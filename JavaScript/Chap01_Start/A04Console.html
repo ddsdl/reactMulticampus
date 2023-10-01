@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="bootstrap" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <title>A04 Console</title>
+</head>
+<body>
+  <div class="m-3">
+    <h1>A04 Console</h1>
+
+    <div>
+      마우스 오른쪽 클릭 -> 검사<br>
+      상단 탭에서 Console을 선택 후 확인<br>
+    </div>
+  </div>
+
+  <script>
+    // type은 생략하면 type="text/javascript"가 생략된 걸로 인식
+    
+    // document.write => body에 기술
+    document.write('<h3>본문에 추가...</h3>');
+
+    // JavaScript에서 문자(1글자 이상)은 더블("") 또는 싱글('')로 묶어서 구현
+    console.log('위에서 활성화 한 console tab에 출력된다. 싱글로 묶음');
+    console.log("위에서 활성화 한 console tab에 출력된다. 더블로 묶음");
+
+    // 변수, 함수는 ""이나 '' 없이 그냥 지정한 변수명만 기술한다
+    var x = 10;
+    var y = 20;
+    function onAdd(x, y) {
+      return x + y;
+    }
+
+    console.log(x);
+    console.log(y);
+    console.log(onAdd(10, 20));
+
+    // 필요에 따라 한줄 띄우기도 가능하다
+    console.log('');
+
+    // 문자와 변수를 연결하는 경우는 + 연산자를 이용해서 연결한다
+    // 문자와 변수를 연결 이외의 경우는 연산이 이루어지거나 에러 발생
+    
+    // ** 문자열과 + 로 연결하면 그 결과는 문자가 된다(즉 문자 이어쓰기 형태가 된다)
+    // 10 + ' + ' => '10 + ' 
+    // '10 + ' + 20 => '10 + 20'
+    // '10 + 20' + ' = ' => '10 + 20 = '
+    // '10 + 20 = ' + 10 => '10 + 20 = 10'
+    // '10 + 20 = 10' + 20 => '10 + 20 = 1020'
+    console.log(x + ' + ' + y + ' = ' + x + y);
+
+    // 10 + 20 => 30 (문자열이 없는 순수 숫자만 +로 연산함)
+    // 30 + '=> ' => '30=> '
+    // '30=> ' + 10 => '30=> 10'
+    // '30=> 10' + ' + ' => '30=> 10 + '
+    // '30=> 10 + ' + 20 => '30=> 10 + 20'
+    console.log(x + y + '=> ' + x + ' + ' + y);
+
+    // 연산 우선 순위가 애매하면 ()로 묶는다. ( )가 연산 우선 순위 중 가장 위에 존재
+    console.log(x + ' + ' + y + ' = ' + (x + y));
+    console.log('');
+
+    // console에는 다양한 종류의 출력 방식이 존재한다
+    console.log('LOG: ' + x);
+    console.trace('TRACE: ' + x);
+    console.debug('DEBUG: ' + x);
+    console.info('INFO: ' + x);
+    console.warn('WARN: ' + x);     // 노란색으로 표시
+    console.error('ERROR: ' + x);   // 빨강색으로 표시
+    console.log('');
+
+    console.log(onAdd);             // 값으로 출력
+    console.dir(onAdd);             // 내용 (구조)를 출력
+    console.log('');
+    
+    // time ~ timeEnd 사이에 있는 명령문이 실행되는 시간을 출력
+    // 1000이 1초다. 이를 "밀리초"라 한다
+    console.time('이 문자열이 동일해야 합니다');
+      for(var i = 0; i < 100000000; i++) { }
+    console.timeEnd('이 문자열이 동일해야 합니다');
+    console.log('');
+
+    // 명령 뒤의 세미콜론( ; )은 생략 가능하다.
+    // 생략하면 자바스크립트 파서가 자동으로 추가해 준다 
+    console.log('Hello World')      // OK - 세미콜론 없음
+    console.log('Hello World');     // OK - 세미콜론 있음
+    
+    // 세미콜론 자동 추가 시점은 일단 개행 위치지만 다음 줄을 판단해서 안 붙일 수도 있음
+    // 즉 다음줄을 같이 평가해서 에러가 아니면 세미 콜론을 붙이지 않는다.
+
+    // var x;
+    var x
+    // x = 10;
+    x
+    =
+    10
+    // console.log(x);
+    console.log(x)
+    console.log('');
+
+    // 다음은 주의
+    var y = 0;
+    var z = x + y;
+    (x + y).toString();
+
+  </script>
+</body>
+</html>

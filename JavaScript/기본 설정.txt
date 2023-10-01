@@ -1,0 +1,63 @@
+강사
+  신성진
+  pxp13716@gmail.com
+
+
+GitHub
+  
+
+설치 프로그램
+  VSCode              https://code.visualstudio.com/
+  Chrome              https://www.google.co.kr/chrome/
+  Node                https://nodejs.org/ko/
+
+  NPM:                https://www.npmjs.com/
+
+  babel:              https://babeljs.io/
+  babel plugin:       https://babeljs.io/docs/en/plugins/
+
+  Axios:              https://yamoo9.github.io/axios/
+
+  JavaScript 지원 현황  http://kangax.github.io/compat-table/es6/
+  브라우저 점유율         https://gs.statcounter.com/
+
+  CDN                 https://cdnjs.com/
+
+
+
+VSCode 기본 설정
+  1. Auto Save
+    => onFocusChange
+  2. Tab Size
+    => 2
+  3. Default Formatter ( 검색창에 formatter로 검색)
+    => TypeScript And JavaScript...
+    => Prettier 플러그인 설치 후는 pretter로 설정
+  4. Format on Save 
+    => check
+  5. Compact Folders
+    => check 해제
+
+세팅 바로가기
+  View => Command Palette(ctrl + shift + p)
+  => settings로 검색
+  => User Settings(JSON) 선택
+
+
+VSCode Plugins
+  JavaScript (ES6) code snippets
+  Live Server
+
+  ESLint    
+    => JavaScript 실시간 에러 체크 (여기서는 안함)
+  Prettier  
+    => 문서 포멧 설정. 설정에 Prettier 설정이 추가된다.
+    => Prettier설정에서 몇가지 변경 (settings.json 참조)
+
+  Korean Language Pack for Visual Studio Code
+    => ctrl + shift + p에서 language로 검색 
+    => 표시 언어 구성(Confiure Display Language) 선택
+  Material Icon Theme     => Icon
+  Dracula Official        => Theme
+  GitHub Theme            => Theme
+  Auto Rename Tag

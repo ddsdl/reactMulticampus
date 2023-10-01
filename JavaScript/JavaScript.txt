@@ -1,0 +1,49 @@
+JavaScript
+  1995년 NetScape의 브렌던 아이크(Brendan Eich)가 개발
+  1996년 NetScape 2에 탑재되었고 모카로 명명됨
+  1996년 09월 LiveScript로 이름 변경
+  1996년 12월 JavaScript로 이름 변경
+
+  1996년 08월 Microsoft는 JScript을 Explorer 3.0에 탑재
+  크로스 브라우징 이슈 발생
+
+  1996년 11월 NetScape사가 비영리 표준화 기구인 ECMA 인터네셔널에 표준화 요청
+  1997년 07월 ECMA-262라 불리우는 JavaScript 초판(ECMAScript 1) 사양 완성
+
+  1999년 ECMAScript 3(ES3)이 공개
+    정규표현식, try ~ catch
+  
+  2009년 ECMAScript 5(ES5)이 HTML5와 함께 공개
+    forEach, map, filter, reduce, some, every
+  
+  2015년 ECMAScript 6(ECMAScript 5 또는 ES6) 공개
+    let, const, arrow function, template leteral, destructuring, spread operator
+    for ~ of
+
+  JavaScript는 기본이 되는 ECMAScript와 브라우저가 별도로 지원하는 클라이언트 사이트 Web API를
+  포함한 개념
+  JavaScript는 별도의 컴파일이 필요없는 인터프리터 언어
+  명령형, 함수형, 프로토타입 기반, 객체지향 프로그래밍을 지원하는 멀티 페러다임 프로그래밍 언어
+
+
+TC39에 의한 표준화
+  state 0: 허수아비 (strawnam)
+  state 1: 제안 (proposal)
+  state 2: 초고 (draft)
+  state 3: 후보 (candidate)
+  state 4: 완료 (finish)
+  
+  참조: https://ahnheejong.gitbook.io/ts-for-jsdev/appendix-ii-js-ecosystem/tc39-process
+
+
+Ajax
+  1996년 서버와 브라우저간 비동기 방식의 데이터 교환을 위한 통신 기능
+  Ajax(Asynchronous JavaScript And XML) 등장.
+
+  2005년 Google Maps가 웹 애플리케이션 프로그래밍 언어로 JavaScript의 기능성을
+  확인하는 계기를 마련 - 데스크톱 애플리케이션과 비교했을때 손색이 없을 정도의 
+  화면을 구현
+    
+
+
+

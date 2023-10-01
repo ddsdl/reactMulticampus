@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+    <title>A04 Event</title>
+  </head>
+  <body>
+    <div class="card-body">
+      <h1>A04 Scope의 오염 문제</h1>
+
+      <button id="btn01">CLICK</button>
+      <button id="btn02">CLICK</button>
+    </div>
+
+    <script>
+      window.addEventListener("load", function () {
+        console.dir(this);
+      });
+      
+    </script>
+  </body>
+</html>

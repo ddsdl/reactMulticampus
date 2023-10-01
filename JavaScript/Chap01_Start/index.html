@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.js"></script>
+  <title>JavaScript</title>
+</head>
+<body>
+  <div class="m-3">
+    <h1>JavaScript</h1>
+
+    <div>
+      <a id="btn" class="btn btn-primary position-relative" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Link with href
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <span id="cnt"></span>
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </a>
+    </div>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body">
+        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+      </div>
+    </div>
+  </div>
+
+  <script src="./counter.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="bootstrap" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <title>A03 Index</title>
+
+  <!-- 
+    src 속성이 있는 script 태그의 내부에 필요한 script 명령을 기술하면 모두 무시된다.
+  -->
+  <script type="text/javascript" src="./js/lib.js"></script>
+  <script type="text/javascript" src="./js/header.js">
+    alert("Hello World!!!");  // 이 명령은 무시됨.
+  </script>
+
+<script type="text/javascript">
+  alert("Hello World!!!");    // src 속성이 없으므로 정상 동작
+</script>
+
+</head>
+<body>
+  <div class="m-3">
+    <!-- HTML 주석 -->
+    <h1>A01 JavaScript</h1>
+
+    <script type="text/javascript" src="./js/bodyOne.js"></script>
+
+    <div class="mb-3">
+      <h3>01 HTML</h3>
+      <div id="one">
+        This is HTML Content.
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/bodyTwo.js"></script>
+
+    <div class="mb-3">
+      <h3>02 CSS </h3>
+      <div id="two">
+        This is CSS Content.
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/footer.js"></script>
+  </div>
+</body>
+</html>

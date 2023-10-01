@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="bootstrap" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <title>A02 Index</title>
+
+  <!-- 
+    CSS와는 달리 </script>라는 종료태그를 삭제할 수 없다(반드시 있어야 한다)
+    또한 <br />과 같이 <script type="text/javascript" src="./js/header.js" />
+    형태로 줄여서 사용할 수 없다. 꼭꼭 </script>가 있어야 한다 
+    <script type="text/javascript" src="./js/lib.js"></script>
+    <script type="text/javascript" src="./js/header.js"></script>
+  -->
+  <script type="text/javascript">
+    var one = 1;
+    var two = 2;
+
+    function onMulti(x, y) {
+      return x * y;
+    }
+
+    document.write('01. Body에 표시는 된다<br>');
+    document.write('이후 기술되는 자바스크립트에서 사용할 변수, 함수 등을 정의<br>');
+    document.write('브라우저가 시작될때 자동으로 처리해야 할 작업 등을 기술한다<br><br>');
+
+    var x = 10;
+    var y = 20;
+    var z = x + y;
+
+    // 함수
+    function onMin(x, y) {
+      return x - y;
+    }
+
+    document.write(one + two);
+  </script>
+
+</head>
+<body>
+  <div class="m-3">
+    <!-- HTML 주석 -->
+    <h1>A01 JavaScript</h1>
+
+    <script type="text/javascript" src="./js/bodyOne.js"></script>
+
+    <div class="mb-3">
+      <h3>01 HTML</h3>
+      <div id="one">
+        This is HTML Content.
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/bodyTwo.js"></script>
+
+    <div class="mb-3">
+      <h3>02 CSS </h3>
+      <div id="two">
+        This is CSS Content.
+      </div>
+    </div>
+
+    <script type="text/javascript" src="./js/footer.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="bootstrap" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <title>A01 Index</title>
+  <script type="text/javascript">
+    document.write('01. Body에 표시는 된다<br>');
+    document.write('이후 기술되는 자바스크립트에서 사용할 변수, 함수 등을 정의');
+    document.write('브라우저가 시작될때 자동으로 처리해야 할 작업 등을 기술한다');
+
+    // //로 시작하면 그 줄은 주석 (파서가 실행하지 않고 패싱)
+    /*
+      이런식으로 여러줄을 묶어서 주석 처리도 가능하다
+      자바스크립트는 이렇게 2가지 형태의 주석이 존재
+    */
+
+    // 변수
+    var x = 10;
+    var y = 20;
+    var z = x + y;
+
+    // 함수
+    function onMin(x, y) {
+      return x - y;
+    }
+  </script>
+</head>
+<body>
+  <div class="m-3">
+    <!-- HTML 주석 -->
+    <h1>A01 JavaScript</h1>
+
+    <script type="text/javascript">
+      alert('첫번째 알림창!!!');
+
+      document.write('01. Hello World!!!<br>');
+      document.write('자바스크립트가 실행되어야 할 위치에 언제든지 기술 가능<br>');
+      document.write('ID one를 안보이게 처리 -> 불 가능 -> 에러로 처리됨<br>');
+      document.write('ID two를 안보이게 처리 -> 불 가능 -> 에러로 처리됨<br><br>');
+
+      document.write(x + ' + ' + y + ' = ' + z + '<br>')
+    </script>
+
+    <div class="mb-3">
+      <h3>01 HTML</h3>
+      <div id="one">
+        This is HTML Content.
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      document.write('02. Hello World!!!<br>');
+      document.write('자바스크립트가 실행되어야 할 위치에 언제든지 기술 가능<br>');
+      document.write('ID one를 안보이게 처리 -> 가능<br>');
+      document.write('ID two를 안보이게 처리 -> 불 가능 -> 에러로 처리됨<br><br>');
+
+      x = 100;
+      y = 200;
+      z = x + y;
+      document.write(x + ' + ' + y + ' = ' + z + '<br>')
+
+    </script>
+
+    <div class="mb-3">
+      <h3>02 CSS </h3>
+      <div id="two">
+        This is CSS Content.
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      document.write('03. /body 위에 기술<br>');
+      document.write('가장 많이 사용하는 형태. 모든 구성 요소가 전부 읽어진 상태 -> DOM 완성<br>');
+      document.write('ID one를 안보이게 처리 -> 가능<br>');
+      document.write('ID two를 안보이게 처리 -> 가능<br><br>');
+
+      document.write('20 - 5 = ' + onMin(20, 5) + '<br>');
+      document.write('200 - 50 = ' + onMin(200, 50) + '<br>');
+      
+      // document.querySelector('#one').style.display = 'none';
+      // document.querySelector('#two').style.display = 'none';
+    </script>
+  </div>
+</body>
+</html>

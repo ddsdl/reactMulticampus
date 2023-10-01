@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="bootstrap" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css">
+  <title>A05Alert.html</title>
+</head>
+<body>
+  <div class="m-3">
+    <h1>A05Alert.html</h1>
+
+    <script>
+      // 경고창
+      // alert('경고 문고');
+      // alert("경고 문구를 여기에 적습니다");
+
+      // 사용자로부터 1개의 값을 받는다 - 값은 문자 형태이다
+      // var value = prompt('값을 입력해 주세요');
+      // console.log(value + 100);
+
+      // 사용자로부터 true / false를 받아 처리한다
+      // 문자열이 아닌 자바스크립트의 boolean 타입으로 표시된다
+      // var value = confirm('표시할 문구');
+      // console.log(value);
+    </script>
+
+    <h1>안녕하세요</h1>
+    <script>
+      // 453 page
+      var name = prompt('이름을 입력해 주세요');
+      document.write('<b>' + name + '</b>님, 환영합니다');
+      console.log('<b>' + name + '</b>님, 환영합니다');
+
+      throw new Error('일부러 에러를 발생시킴');
+      
+      {
+        // { 후 
+        //    개행 후 한개의 탭 들여쓰기;
+        //    {
+        //      개행 후 한개의 탭 들여쓰기;
+        //      ....
+        //    }
+        //    한 탭을 밖으로 빼서 기술;
+        //  }
+        //  한 탭을 밖으로 빼서 기술;
+        var x = 10;
+        var y = 20;
+        var z = x +     y;    // OK
+      }
+
+      /*
+        변수명(식별자)
+        1. 시작은 영문자 또는 "_, $"로 시작해야 한다
+        2. 두번째 부터는 숫자를 사용할 수 있다(변수명이 숫자로 시작은 에러)
+        3. 예약어는 사용할 수 없다
+          예약어 => var, for, if
+        4. 변수는 대소문자를 구분한다
+          nickname과 Nickname은 다른 변수명이다
+      */
+    </script>
+
+  </div>
+</body>
+</html>
