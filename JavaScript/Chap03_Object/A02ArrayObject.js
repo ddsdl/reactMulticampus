@@ -8,7 +8,7 @@ const clazz = [
 ];
 
 for (let i = 0; i < clazz.length; i++) {
-  const item = clazz[i];
+  const item = clazz[i];  // item => { name: '놀부', kor: 100, eng: 90, total: 0, avg: 0 },
   item.total = item.kor + item.eng;
   item.avg = item.total / 2;
   console.log(`${item.name}님의 총점은 ${item.total} / ${item.avg}`);

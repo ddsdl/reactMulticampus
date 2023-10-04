@@ -15,9 +15,13 @@ console.log('');
 console.log('----------------- &&, || 를 연산자로 사용 -----------------');
 // 연산자로 사용
 // JavaScript에서는 값이 없으면 false다. 그 외에 값이 있으면 true로 취급된다
-// '', 0, undefined, null, NaN, false
+// '', 0, -0, 0n, undefined, null, NaN, false
 let age;
 console.log(age);
+
+if (age) {
+  console.log('값이 없으므로 false');
+}
 
 result = (age) ? 'TRUE' : 'FALSE';
 console.log(result);

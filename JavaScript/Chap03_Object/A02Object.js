@@ -26,7 +26,7 @@ delete obj.tel;
 console.log(obj);
 console.log('');
 
-// 순환
+// 순환 - ES5 (2009)
 for (const key in obj) {
   // console.log(key);
   // console.log(obj[key]);
