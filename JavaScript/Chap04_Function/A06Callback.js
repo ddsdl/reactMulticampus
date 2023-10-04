@@ -1,10 +1,27 @@
 console.log('---------------- [307] 중첩함수, 콜백함수 -----------------');
+const x = 1000;
 
 // 중첩함수
-function outer() {
+function outer1() {
   let x = 10;
+
+  function inner() {
+    const y = 20;
+    const result = x + y;
+    console.log(`${x} + ${y} = ${result}`);
+    // return undefined;
+  }
+
+  // return inner;          // 1. 값으로 전달
+  return inner();           // 2. inner 함수를 실행 ()하고 그 결과값을 리턴해라 => undefined가 리턴
 }
-outer();
+const result = outer1();
+// console.log(result);
+// result();                // 1. 값으로 전달된 함수를 실행( ) 해라
+// result();                // 2. 넘어온 값이 undefined. undefined를 함수로 실행 undefined() 해라 => 에러
+console.log(result);        // undefined
+
+
 console.log('');
 
 /*

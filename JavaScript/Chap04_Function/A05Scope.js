@@ -16,13 +16,22 @@ console.log('');
 var str = 'Global';
 
 function out() {
+  // var, let, const 어떤 키워드로 달아도 함수 내부에서 선언된 변수는 함수 내부에서만 사용 가능한
+  // 지역 변수가 된다. => 함수 밖에서 참조할 수 없다
   var str = 'Local';
   console.log('Function IN: ', str);
+
+  // 함수 내부에서 변수를 선언할 때 var, let, const 키워드를 달지 않고 선언하면
+  // 그 변수는 global 변수(window)로 등록된다.
+  inner = '함수 내부의 inner 변수';
+  console.log('Function IN: ', inner);
 }
+out();
+
 console.log('Function OUT: ', str);
+console.log('Function OUT: ', inner);
 console.log('');
 
-// 197 Page
 // arguments 객체 생성
 // scope chian 설정
 // 내부 변수 정의
@@ -33,13 +42,24 @@ let y = 'Global Y';
 
 function outer() {
   let z = 'Outer Local z';
-}
 
+  const inner = function () {   // 중첩 함수
+    const y = 'INNER Y';
+    console.log(`x=> ${x}`);
+    console.log(`y=> ${y}`);
+    console.log(`z=> ${z}`);
+  }
+
+  inner();
+}
 outer();
+// inner();           // 함수 내부에 선언된 변수. 함수 외부에서 호출할 수 없다.
 console.log('');
+
 
 function foo() {
   const x = 10;
+  console.log(x);   // 10
   bar();
 }
 
@@ -47,4 +67,5 @@ function bar() {
   console.log(x);
 }
 
-bar();
+// bar();
+foo();        // Global X
