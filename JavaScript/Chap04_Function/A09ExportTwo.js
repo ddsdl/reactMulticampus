@@ -1,4 +1,6 @@
 // A08ExportTwo.js
+
+// export default (function () { ... }
 const jumsu = (function () {
   const progName = '점수 프로그램';
   const name = '놀부';
@@ -13,8 +15,11 @@ const jumsu = (function () {
     return total / num;
   };
 
-  return getName;
+  return { progName, getName, getTotal, getAvg };
 })();
+// default는 module에서 1개의 값만 지정 가능
+export default jumsu;
 
-const x = 10;
-const y = 20;
+// 개별 export는 중첩해서 사용 가능
+export const x = 10;
+export const y = 20;

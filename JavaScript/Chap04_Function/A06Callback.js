@@ -8,6 +8,7 @@ console.log('---------------- [307] 중첩함수, 콜백함수 -----------------
 // }
 // displayNumber();
 
+// HOF Higher Order Function => react HOC Component
 
 const x = 1000;
 
