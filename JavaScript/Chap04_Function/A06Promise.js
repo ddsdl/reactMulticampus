@@ -46,10 +46,20 @@ getValue(2000)
 // ES2017
 // async ~ await
 // 함수 기반으로 실행된다
-
-
-
-
-
+const one = async function () {
+  console.log('----- ONE START -----')
+  try {
+    const resp1 = await getValue(1500);
+    console.log(`1 => ${resp1}`);
+    const resp2 = await getValue(resp1);
+    console.log(`2 => ${resp2}`);
+    const resp3 = await resp2 + 5000;
+    console.log(`3 => ${resp3}`);
+  } catch (err) {
+    console.error(err)
+  }
+  console.log('----- ONE END -----')
+}
+one();
 
 console.log('---------------- END -----------------');

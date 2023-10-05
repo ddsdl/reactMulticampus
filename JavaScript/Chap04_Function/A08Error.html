@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>즉시 실행 함수 - 이러면 변수 중복이 발생한다</title>
+</head>
+<body>
+  <h1>A08 즉시 실행 함수 에러</h1>
+
+  <div id="root"></div>
+
+  <script src="./A08Library/one.js"></script>
+  <!-- 위의 one에 x, y 변수가 중복되어 재 선언 할 수 없음 -->
+  <script src="./A08Library/two.js"></script>
+  <script>
+    const str = `${x} / ${y} / ${onAdd()}`
+
+    const root = document.querySelector('#root');
+    root.innerHTML = str;
+  </script>
+</body>
+</html>

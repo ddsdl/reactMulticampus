@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>즉시 실행 함수 - 즉시 실행 함수</title>
+</head>
+<body>
+  <h1>A08 즉시 실행 함수</h1>
+
+  <div id="root"></div>
+
+  <script src="./A08Library/three.js"></script>
+  <script src="./A08Library/four.js"></script>
+  <script>
+    const str = `${three.x} / ${three.y} / ${three.onAdd()}<br>
+      ${four.x} / ${four.y} / ${four.onMin(10, 5)}
+    `
+
+    const root = document.querySelector('#root');
+    root.innerHTML = str;
+  </script>
+</body>
+</html>

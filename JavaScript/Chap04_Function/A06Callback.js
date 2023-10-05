@@ -192,5 +192,5 @@ const eight = function (callback) {
 const printValue = function (value) {
   console.log(value);
 }
-// eight(printValue);
+eight(printValue);
 
