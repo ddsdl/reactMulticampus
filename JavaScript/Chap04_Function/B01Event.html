@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <button id="btn">CLICK</button>
+    <button id="btn1">CLICK</button>
+  </div>
+
+  <script type="text/javascript" src="A02Function.js"></script>
+  <script>
+    const alertFunc = function(evt) {
+      console.log('경고상자')
+      alert(10);
+    }
+    const confirmFunc = function(evt) {
+      console.log('선택 상자')
+      confirm('선택해 주세요....')
+    }
+
+    const app = (function() {
+      const x = 10;
+
+      const btn = document.querySelector('#btn');
+      btn.addEventListener('click', confirmFunc);
+
+      const btn1 = document.querySelector('#btn1');
+      btn1.addEventListener('click', confirmFunc);
+
+      return {btn}
+    })();
+
+    console.log(app.btn)
+  </script>
+</body>
+</html>

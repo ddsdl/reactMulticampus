@@ -7,34 +7,33 @@
 </head>
 <body>
   <div>
-    <button id="btn">CLICK</button>
-    <button id="btn1">CLICK</button>
+    <h1>Event Callback</h1>
+
+    <button id="btn01">Hello World</button>
+    <button id="btn02">click 02</button>
+    <button id="btn03">click 03</button>
   </div>
 
-  <script type="text/javascript" src="A02Function.js"></script>
   <script>
-    const alertFunc = function(evt) {
-      console.log('경고상자')
-      alert(10);
+    const btn01Event = function(evt) {
+      alert(evt.target.innerText);
+      evt.target.style.background = 'orange'
     }
-    const confirmFunc = function(evt) {
-      console.log('선택 상자')
-      confirm('선택해 주세요....')
+    const btn02Event = function() {
+      alert('Good Morning');
     }
 
-    const app = (function() {
-      const x = 10;
+    const btn03Event = function(color) {
+      return function(evt) {
+        alert('Good Afternoon');
+        evt.target.style.background = color;
+      }
+    }
 
-      const btn = document.querySelector('#btn');
-      btn.addEventListener('click', confirmFunc);
+    document.querySelector('#btn01').addEventListener('click', btn01Event);
+    document.querySelector('#btn02').addEventListener('click', btn02Event);
 
-      const btn1 = document.querySelector('#btn1');
-      btn1.addEventListener('click', confirmFunc);
-
-      return {btn}
-    })();
-
-    console.log(app.btn)
+    document.querySelector('#btn03').addEventListener('click', btn03Event('orange') );
   </script>
 </body>
 </html>
