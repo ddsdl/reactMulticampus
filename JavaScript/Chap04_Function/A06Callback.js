@@ -12,6 +12,17 @@ console.log('---------------- [307] 중첩함수, 콜백함수 -----------------
 
 const x = 1000;
 
+function outer100(inner) {
+  let x = 10;
+
+  inner(x);
+}
+
+const inner100 = function (x) {
+  console.log('외부에서 전달된 함수....')
+}
+outer100(inner100)
+
 // 중첩함수
 function outer1() {
   let x = 10;
