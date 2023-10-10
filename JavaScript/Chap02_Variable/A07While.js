@@ -16,13 +16,14 @@ let i = 0;
 while (i < 3) {
   console.log(`Hello World!!!=> ${i}`);
   i++;
-  // i = 5;
+  i = 5;
 }
 
 i = 1;
 let result = 0;
+
 while (i <= 10) {
-  result += i;        // result = result + i;
+  result += i; // result = result + i;
   i++;
 }
 console.log(`1부터 10까지의 합 ${result}`);
@@ -36,7 +37,6 @@ while (i <= 100) {
   i++;
 }
 console.log(`1부터 100까지의 짝수의 합 ${result}`);
-
 
 // 1부터 100까지의 수 중에서 3의 배수의 합만 구하시오
 i = 1;
@@ -63,7 +63,6 @@ while (i < 10) {
   i++;
 }
 console.log('');
-
 
 console.log('--------- do ~ while ---------');
 

@@ -16,6 +16,9 @@ const Jumsu = (function () {
     console.log(`${this.name} / ${this.onTotal()} / ${this.onAvg()}`);
   };
 
+  Jumsu.className = '3학년 1반';
+  Jumsu.area = (w, h) => w * h;
+
   return Jumsu;
 })();
 
@@ -86,7 +89,7 @@ console.log('');
 console.log(hungbu.name);
 
 hungbu.name = '변경된 흥부';
-console.log(hungbu.name);
+console.log(hungbu.name);     // 변경은 안되지만 에러는 아님
 console.log('');
 
 console.log('---------------- prototype -----------------');

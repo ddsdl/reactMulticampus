@@ -1,8 +1,7 @@
 console.log('----------------- [481] Conditional Statument -----------------');
-let kor, eng, avg;
-kor = 100;
-eng = 90;
-avg = (kor + eng) / 2;
+const kor = 100;
+const eng = 90;
+const avg = (kor + eng) / 2;
 
 // 단순 IF
 // 조건이 참인 경우만 실행할 구문이 있는 경우
@@ -93,7 +92,7 @@ if (avg >= 90) {
 } else if (avg >= 60) {
   hakjum = 'D';
 }
-console.log(`${hakjum} 학점 입니다...`)
+console.log(`${hakjum} 학점 입니다...`);
 console.log('');
 
 
@@ -150,11 +149,11 @@ if (value === null) {
 }
 */
 
-let value = prompt('숫자를 입력해 주세요');
+const value = prompt('숫자를 입력해 주세요');
 console.log(`value: ${value}, ${typeof value}`);
 
 if (value !== null) {   // 확인 버튼을 클릭했다면
-  (value % 3 === 0) ? console.log('3의 배수') : console.log('3의 배수 아님')
+  (value % 3 === 0) ? console.log('3의 배수') : console.log('3의 배수 아님');
 }
 console.log('');
 
