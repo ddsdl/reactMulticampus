@@ -12,6 +12,7 @@
       <h2>A07 KeyBoard Event</h2>
 
       <input type="text" name="name" class="form-control" />
+
       <button>CLICK</button>
       <br />
       <div id="result"></div>
@@ -20,6 +21,35 @@
 
   <script type="text/javascript">
     (function () {
+      // 선택은 이 방식이 보편적으로 사용된다.
+      // querySelector('css 선택자');
+      // document.querySelector('#result');
+      // document.querySelector('div');    // div 처음 매칭된 요소
+      // document.querySelectorAll('div');    // div 전체
+
+      // form 요소 중 키보드로 값을 입력할 수 있는 요소는 keyup, keydown, keypress(누르는 동안)이벤트가 존재
+      document.querySelector('input[name="name"]').addEventListener('keyup', function(evt) {
+        console.log(evt);
+        const key = evt.key;
+        const code = evt.code;
+        const keyCode = evt.keyCode;
+        console.log(`Key: ${key}, Code: ${code}, keyCode: ${keyCode}`);
+        console.log(`Shift: ${evt.shiftKey}, Alt: ${evt.altKey}, Ctrl: ${evt.ctrlKey}, Meta: ${evt.metaKey}`)
+
+        if(evt.keyCode === 27 && evt.shiftKey) {
+          evt.target.value = '';
+          // location.assign('http://google.com');
+        }
+      });
+
+      // keyboard 이벤트 이외의 이벤트도 alt, ctrl, shift, meta key는 사용 가능
+      document.querySelector('button').addEventListener('click', function(evt) {
+        // console.log(evt);
+        if(evt.shiftKey) {
+          location.assign('http://google.com');
+        }
+      })
+      
       
     })();
   </script>

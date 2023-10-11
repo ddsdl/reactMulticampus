@@ -17,9 +17,31 @@
     </div>
 
     <script>
-      function clickEvent(evt) {
-        console.log(this);
+      const clickEvent = function(evt) {
+        console.log(evt.target);    // button
+        console.log(this);          // window
       };
+
+      document.getElementById('btn01').addEventListener('click', function(evt){
+        console.log(evt.target);    // button
+        console.log(this);          // button
+      });
+
+      const btn02Event = function (evt) {
+        console.log(evt.target);    // button
+        console.log(this);          // button
+      };
+      document.getElementById('btn02').addEventListener('click', btn02Event);
+
+      /*
+      const user = {
+        name: 'ABC',
+        info: () => {
+          console.log(this.name);     // this는 window
+        }
+      }
+      user.info();
+      */
     </script>
   </body>
 </html>

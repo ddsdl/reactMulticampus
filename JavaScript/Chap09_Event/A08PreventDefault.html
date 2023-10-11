@@ -11,8 +11,8 @@
     <div class="card-body">
       <h2>A08 preventDefault</h2>
 
-      <form>
-        Name: <input type="text" class="form-control" />
+      <form method="get" action="A01Event.html">
+        Name: <input type="text" name="name" class="form-control" />
         <button type="submit">SEND</button>
       </form>
       <br />
@@ -25,7 +25,32 @@
 
     <script type="text/javascript">
       (function () {
-        
+        document.querySelector('button[type="submit"]').addEventListener('click', function(evt){
+          // HTML 요소가 가지고 있는 기본 자바스크립트 기능을 취소(실행 안되도록) 
+          evt.preventDefault();
+          const value = document.querySelector('input[name="name"]').value;
+          if(value.trim() !== '') alert(value);
+          else alert('한 글자 이상 입력해 주세요')
+        });
+
+        const linkElem = document.querySelectorAll('a');
+        // console.log(linkElem);
+        linkElem[0].addEventListener('click', function(evt) {
+          evt.preventDefault();
+          console.log('이동하지 않는다...')
+        });
+
+        // 브라우저 우클릭 방지..
+        document.addEventListener('contextmenu', function(evt) {
+          evt.preventDefault();
+        });
+
+
+        document.querySelector('input[name="name"]').addEventListener('keydown', function(evt){
+          evt.preventDefault();
+          evt.target.value = '이 글자만 표시됩니다....'
+        })
+
       })();
     </script>
   </body>

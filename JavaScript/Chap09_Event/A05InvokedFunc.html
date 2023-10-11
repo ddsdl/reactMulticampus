@@ -13,11 +13,33 @@
 
       <button id="btn01">ONE</button>
       <button id="btn02">TWO</button>
+      <button id="btn03">three</button>
     </div>
 
     <script type="text/javascript">
       (function () {
-        
+        // 함수 내부에 선언된 함수, 변수
+        // 따라서 함수안에서만 유효한 변수, 함수가 된다 => global 영역을 오염시키지 않는다
+        function alert(msg) {
+          console.log(msg);
+        }
+
+        var btn01Event = function(evt) {
+          evt.target.innerText = 'Hello World!!!';
+        }
+        var btn02Event = function(evt) {
+          evt.target.style.background = 'orange'
+        }
+
+        const btn01 = document.getElementById('btn01');
+        btn01.addEventListener('click', btn01Event);
+
+        document.getElementById('btn02').addEventListener('click', btn02Event);
+
+        document.getElementById('btn03').addEventListener('click', function(evt){
+          // window.alert(evt.target.innerText);    // alert 창 활성화 된다
+          alert('Good Morning');    // 함수 내부의 alert(msg)가 호출됨
+        });
       })();
     </script>
   </body>

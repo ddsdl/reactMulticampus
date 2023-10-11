@@ -13,6 +13,7 @@
 
       <button id="btn01">ONE</button>
       <button id="btn02">TWO</button>
+      <button id="btn03">three</button>
     </div>
 
     <script type="text/javascript">
@@ -22,6 +23,10 @@
       function btnEvent02(evt) {
         console.log('Two Button Clicked');
       }
+      function btnEvent03(evt) {
+        console.log('이게 먼저 실행되어 콘솔창에 표시된다');
+        // return undefined;
+      }
 
       const one = document.getElementById('btn01');
       const two = document.getElementById('btn02');
@@ -29,6 +34,9 @@
       // 이벤트 핸들러로 호출. 매개변수를 전달하지 않는다. 
       one.addEventListener('click', btnEvent01);
       two.addEventListener('click', btnEvent02);
+
+      // ()를 붙이면 two.addEventListener('click', undefined); 와 동일하다
+      document.getElementById('btn03').addEventListener('click', btnEvent03());
     </script>
   </body>
 </html>

@@ -6,6 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
     <title>A04 Event</title>
+
+    <script>
+      /*
+      // 선언문 방식의 함수는 호이스팅이 이루어진다. 윈도우 영역에 동일한 메서드, 프로퍼티(속성)이 있으면 덮어씀
+      function alert(evt) {
+        console.log(evt.target);
+      }
+      alert('Hello')
+      */
+      
+      // alert('Hello');
+
+      // window의 하나의 객체다..
+      // load => 브라우저가 표시 HTML 요소를 에러없이 전부 로드한 후에 실행되는 이벤트
+      // </html>까지 정상적으로 파싱되면 호출됨
+      window.addEventListener("load", function () {
+        // console.dir(this);
+        const btn01 = document.getElementById('btn01');
+        console.log(btn01);
+
+        function alert(evt) {
+          console.log(evt.target);
+        }
+      });
+      window.addEventListener("error", function () {
+        console.log('Error 발생')
+      });
+      window.addEventListener("resize", function () {
+        console.log('크기 변경됨....')
+      });
+      
+      
+      // 브라우저가 자바스크립트를 만나면 HTML 파싱을 중단하고 자바스크립트 엔진에 사용권을 넘김
+      // 이때 브라우저의 HTML은 body를 읽지 못한 상태. 따라서 btn01이라는 id를 가진 요소를 못 찾음
+      // const btn01 = document.getElementById('btn01');
+      // console.log(btn01);
+    </script>
+
   </head>
   <body>
     <div class="card-body">
@@ -14,12 +52,5 @@
       <button id="btn01">CLICK</button>
       <button id="btn02">CLICK</button>
     </div>
-
-    <script>
-      window.addEventListener("load", function () {
-        console.dir(this);
-      });
-      
-    </script>
   </body>
 </html>

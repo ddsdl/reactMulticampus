@@ -15,7 +15,44 @@
 
   <script type="text/javascript">
     (function () {
+      // 추후 참조
+      let boxX, boxY;
       
+      const box = document.createElement('div');            // <div></div>
+      const text = document.createTextNode('JavaScript');   // 'JavaScript'
+      box.appendChild(text);                                // <div>JavaScript</div>
+      document.body.appendChild(box);       // 지정한 요소의 마지막에 추가된다.
+
+      // CSS 적용. "대상.style.css명령 = 값;"
+      box.style.background = 'lightgray';
+      // box.style.display = 'inline';
+      box.style.position = 'absolute';
+      box.style.left = '100px';
+      box.style.top = '100px';
+      box.style.padding = '10px';
+      box.style.cursor = 'pointer';
+
+      const moveEvent = function(evt) {
+        box.style.left = (evt.pageX - boxX) + 'px';
+        box.style.top = (evt.pageY - boxY) + 'px';
+      }
+
+      box.addEventListener('mousedown', function(evt){
+        // console.log(evt.pageX, evt.pageY);
+        // box.style.left = evt.pageX + 'px';
+        // box.style.top = evt.pageY + 'px';
+        boxX = evt.offsetX;
+        boxY = evt.offsetY;
+
+        // 중첩 이벤트. box의 mousedown 이벤트가 발생해야 mousemove 이벤트가 발생된다
+        document.addEventListener('mousemove', moveEvent);
+      })
+
+      box.addEventListener('mouseup', function() {
+        // Event Listener는 필요가 없으면 삭제해서 메모리 누수를 방지한다.
+        // 삭제는 이벤트명과 이벤트 핸들러의 주소값이 동일해야 삭제된다.
+        document.removeEventListener('mousemove', moveEvent);
+      })
     })();
   </script>
 </html>
