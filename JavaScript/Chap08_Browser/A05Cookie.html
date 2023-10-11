@@ -12,19 +12,70 @@
       <h1>Cookie</h1>
 
       <div>
-        Name: <span id="name"></span><br />
-        Age: <span id="age"></span>
+        Name: <span id="name"></span>님 방문 환영합니다<br />
+        Age: <span id="age"></span>번째 방문입니다
       </div>
     </div>
 
     <script type="text/javascript">
       // Not Escaped => A-Z a-z 0-9 - _ . ! ~ * ' ( )
-      var str = encodeURIComponent("ab123@#$%^&+=!*()_-");
+      var str = encodeURIComponent("한글ab123@#$%^&+=!*()_-");
       console.log(str);
+      console.log(decodeURIComponent(str));
 
       // Not Escaped => A-Z a-z 0-9 ; , / ? : @ & = + $ - _ . ! ~ * ' ( ) #
-      str = encodeURI("ab123%^&!@#$*()_-+=");
+      str = encodeURI("한글ab123%^&!@#$*()_-+=");
       console.log(str);
+      console.log(decodeURI(str));
+      console.log('');
+
+      /*
+      // 256byte 이하의 데이터만 저장가능하다
+      // 저장되는 값은 문자열만 가능
+
+      document.cookie = 'name=놀부; max-age=20';      // max-age의 단위는 초
+      document.cookie = 'age=20; max-age=30';
+
+      console.log(document.cookie);
+      const cookies = document.cookie.split('; ');
+      console.log(cookies)
+      */
+      const getCookie = (name) => {
+        const cookies = document.cookie.split('; ');      // [name="놀부", age=20]
+        for(let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');           // ['name', '놀부']. ['age', 20]
+          const key = decodeURIComponent(cookie[0]);
+
+          // document.cookie = `${key}=${cookie[1] + i}`; // 재 설정
+          if(key === name) return decodeURIComponent(cookie[1]);
+        }
+      }
+
+      // localhost:5000/ => domain
+      // localhost:5000/book/sampe.html => book이 path. 지정되면 book 폴더 내부의 파일만 쿠키 참조 가능
+      const setCookie = (name, value, max, path, domain, secure) => {
+        let cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; `
+        if(max) cookie = cookie + `max-age=${max}; `;
+        if(path) cookie = cookie + `path=${path}; `;
+        if(domain) cookie = cookie + `domain=${domain}; `;    // localhost에서는 적용 안됨
+        if(secure) cookie = cookie + 'secure; ';
+
+        document.cookie = cookie;
+      }
+
+      let flags = true;       // 외부 분리
+      if(flags) {
+        setCookie('name', '향단', 20, '/');       // 패스가 / 면 서버 루트(즉 전체)경로에서 참조 가능
+        setCookie('age', 200, 20, '/')
+        flags = false;
+      }
+
+      // console.log(getCookie('name'));
+      // console.log(getCookie('age'));
+
+      document.getElementById('name').innerHTML = `<b>${getCookie('name')}</b>`;
+      document.getElementById('age').innerHTML = `<b>${getCookie('age') + 1}</b>`;
+
     </script>
   </body>
 </html>

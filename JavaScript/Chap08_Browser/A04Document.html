@@ -24,11 +24,23 @@
       <br />
 
       <div>
-        <button>Open</button>
+        <button id="open" onclick="openWindow()">Open</button>
+        <button id="close" onclick="closeWindow()">Close</button>
       </div>
     </div>
 
     <script type="text/javascript">
+      let openWin = undefined;
+
+      const openWindow = () => {
+        openWin = document.open('./A01Location.html', 'win', 'width=500,height=700,location=no');
+      }
+      const closeWindow = () => {
+        if(openWin) openWin.close();
+      }
+
+
+
       var characterSet = window.document.characterSet;
       var domain = document.domain;
       var lastModified = document.lastModified;
@@ -49,3 +61,4 @@
     </script>
   </body>
 </html>
+

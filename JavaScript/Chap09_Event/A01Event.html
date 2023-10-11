@@ -6,22 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
     <title>A01 Event</title>
-    <script type="text/javascript"></script>
   </head>
   <body>
     <div class="card-body">
       <h2>A10 Event</h2>
 
       <div>
-        <button>CLICK</button>
-        <button>CLICK</button>
+        <!-- inline event라 한다. react, vue, angular에서 사용 -->
+        <button onclick="alert('Hello World!!')">CLICK</button>
+        <button onclick="clickEvent()">CLICK</button>
 
         <button id="btn01">CLICK</button>
-        <button id="btn02">CLICK</button>
+        <button id="btn02">CLICK 02</button>
 
         <!-- inline Event는 예약어 event를 이용 -->
-        <button>CLICK</button>
+        <button onclick="btn03Event(event, 100)">BUTTON 03</button>
       </div>
     </div>
+
+    <script type="text/javascript">
+      // Event Handler
+      function clickEvent() {
+        alert('Good Morning');
+      }
+
+      // 표준 이벤트 방식
+      document.getElementById('btn01').addEventListener('click', function() {
+        alert('Good Afternoon');
+      });
+
+      // event 객체에 대한 참조값은 필요에 따라 주입받아 사용 가능 - 필요없으면 안 받아도 된다
+      // addEventListener() 함수가 내부 콜백함수에 주입해주는 값은 event 객체 1개만 주입. 따라서 num은 undefined
+      document.getElementById('btn02').addEventListener('click', function(evt, num, x, y) {
+        // console.log(evt);
+        console.log(evt.target);          // event를 발생시킨 대상
+        console.log(num);                 // undefined
+        alert(evt.target.innerText);
+      });
+
+      function btn03Event(evt, num) {
+        console.log(evt.target);          // event를 발생시킨 대상
+        console.log(num);                 // undefined
+        alert(evt.target.innerText);
+      }
+    </script>
   </body>
 </html>

@@ -25,22 +25,63 @@
     <br />
 
     <div>
-      <button>href</button>
-      <button>assign</button>
-      <button>Replace</button>
-      <button>Reload</button>
-      <button>search</button>
+      <button onclick="window.alert('Hello World')">Alert</button>
+      <button onclick="window.confirm('진행할까요')">confirm</button>
+      <button onclick="window.prompt('값을 입력해주세요')">prompt</button>
+      <br>
+
+      <!-- 특정 이벤트가 발생되면 실행해야 할 명령을 묶어놓은 함수를 이벤트 핸들러라 한다 => google()  -->
+      <button onclick="google()">href</button>
+      <button onclick="daum()">assign</button>
+      <button onclick="naver()">Replace</button>
+      <button onclick="reloadPage()">Reload</button>
+      <button onclick="setParams()">search</button>
       <br />
 
-      <button>back</button>
-      <button>forward</button>
-      <button>go(-2)</button>
-      <button>go(2)</button>
+      <button onclick="back()">back</button>
+      <button onclick="forward">forward</button>
+      <button onclick="goHistory(-2)">go(-2)</button>
+      <button class="btn btn-primary btn-sm" onclick="goHistory(2)">go(2)</button>
     </div>
   </div>
 
   <script type="text/javascript">
-    console.log(window.location);
+    // 이동 흔적이 history 객체에 남는다
+    const google = function() {
+      const check = confirm('구글로 이동할까요');
+      if(check) location.href = 'http://google.com'
+    }
+    // 이동 흔적이 history 객체에 남는다
+    const daum = () => {
+      location.assign('http://daum.net');
+    }
+
+    // 이동 흔적이 history 객체에 남지 않는다. 따라서 뒤로 가기가 안된다
+    const naver = () => {
+      location.replace('http://naver.com');
+    }
+
+    const reloadPage = () => {
+      location.reload();          // F5 버튼 -> 페이지 재 요청
+    }
+
+    const setParams = () => {
+      location.search = '?name=NolBu&age=20&address=Seoul';
+      location.hash = '#BTM'
+    }
+
+
+    // history
+    const back = () => history.back();
+    const forward = () => history.forward();
+
+    const backTwo = () => history.go(-2);
+    const forwardTwo = () => history.go(2);
+    const goHistory = (num) => history.go(num);
+
+
+    console.log(window.location);     // window는 생략 가능
+    console.log(history);
 
     const host = location.host;
     const hostname = location.hostname;
@@ -51,7 +92,25 @@
     const hash = location.hash;
     const port = location.port;
     const protocol = location.protocol;
+
+    // Tag로 검색 => 유사배열로 리턴
+    const spans = document.getElementsByTagName('span');
+    // console.log(spans);
+    spans[0].textContent = host;
+
+    
+    // ID로 검색 => 여러개 있어도 최조에 매칭된 1개만 가져온다
+    const hostnameElem = document.getElementById('hostname');
+    // console.log(hostnameElem);
+    hostnameElem.innerText = hostname;
+
+    // http://127.0.0.1:5500/Chap08_Browser/A01Location.html?name=놀부&age=20&address=Seoul#TOP
+    document.getElementById('href').innerText = `<b>${href}</b>`;
+    document.getElementById('pahtname').innerHTML = `<b>${pahtname}</b>`;
+    document.getElementById('search').innerText = search;
+    document.getElementById('hash').innerText = hash;
+    document.getElementById('port').innerText = port;
+    document.getElementById('protocol').innerText = protocol;
   </script>
 </body>
-
 </html>
