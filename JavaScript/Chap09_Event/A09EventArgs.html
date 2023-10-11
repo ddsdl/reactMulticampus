@@ -15,12 +15,42 @@
         <button id="btn01">CLICK</button>
         <button id="btn02">CLICK</button>
         <button id="btn03">CLICK</button>
+        <button id="btn04">CLICK</button>
+<!--
+        이벤트 핸들러로 호출. 매개변수가 event 1개인 경우
+        <button onClick={btn02Event}>CLICK</button> 
+
+        이벤트 핸들러로 호출. 매개변수가 event와 다른 값이 1개 이상 있는 경우
+        <button onClick={(evt) => btn04Event(evt, 'orange')}>CLICK</button>
+-->
       </div>
     </div>
 
     <script type="text/javascript">
       (function () {
-        
+        document.querySelector('#btn01').addEventListener('click', function(evt) {
+          evt.target.style.background = 'orange';
+        });
+
+        const btn02Event = function(evt) {
+          evt.target.style.background = 'lightgreen';
+        }
+        document.querySelector('#btn02').addEventListener('click', btn02Event);
+
+        const btn03Event = function(evt, color) {
+          evt.target.style.background = color;
+          evt.target.style.color = 'white';
+        }
+        document.querySelector('#btn03').addEventListener('click', function(evt){
+          btn03Event(evt, 'lightgray')
+        });
+
+        const btn04Event = function(evt, color) {
+          evt.target.style.background = color;
+          evt.target.style.color = 'white';
+        }
+        document.querySelector('#btn04')
+          .addEventListener('click', (evt) => btn03Event(evt, 'orange'));
       })();
     </script>
   </body>
