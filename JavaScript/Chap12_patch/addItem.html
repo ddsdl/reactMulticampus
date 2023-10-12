@@ -24,22 +24,21 @@
     <script type="text/javascript">
       const baseURL = 'https://sample.bmaster.kro.kr/contacts/';
 
-      const addContact = function(data) {
-        const xhr = new XMLHttpRequest();
-        xhr.open('post', baseURL);
-        xhr.setRequestHeader('content-type', 'application/json');
-        xhr.send(JSON.stringify(data));
-
-        xhr.addEventListener('load', function() {
-          if(xhr.status === 200) {
-            const resp = JSON.parse(xhr.responseText);
-            if(resp.status === 'success') location.assign('contactList.html');
+      const addContact = async function(contact) {
+        try {
+          const resp = await fetch(baseURL, {
+            method: 'post',
+            body: JSON.stringify(contact),
+            headers: {
+              'content-type': 'application/json',
+            }
+          });
+          const data = await resp.json();
+          if(data.status === 'success') location.assign('contactList.html');
             else alert('입력 실패');
-          }
-        });
-        xhr.addEventListener('error', function(err) {
-          console.error(err)
-        });
+        } catch(err) {
+          console.error(err);
+        }
       }
 
       document.querySelector('#send').addEventListener('click', function(){

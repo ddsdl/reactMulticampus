@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"/>
+  </head>
+  <body>
+    <div class="card-body">
+      
+      <h3>게시물 상세보기</h3>
+      
+      Name: <input type="text" class="form-control" name="name" readonly/> 
+      Tel: <input type="text" class="form-control" name="tel"  readonly/> 
+      Address: <input type="text" class="form-control" name="address"  readonly/>
+      <br />
+      
+      <button class="btn btn-primary" name="list">LIST</button>
+      <button class="btn btn-danger" name="delete">DELETE</button>
+    </div>
+
+    <script type="text/javascript">
+      // 주소줄에 ? 다음의 값을 추출 => viewItem.html?no=1601087554678
+      const search = location.search.split('=');  // ['?no', '1601087554678']
+
+      const baseURL = 'https://sample.bmaster.kro.kr/contacts/';
+
+      const getContact = async function(no) {
+        try {
+          const resp = await fetch(baseURL + no);
+          const data = await resp.json();
+          // console.log(data);
+          document.querySelector('[name="name"]').value = data.name;
+          document.querySelector('[name="tel"]').value = data.tel;
+          document.querySelector('[name="address"]').value = data.address;
+        } catch(err) {
+          console.error(err);
+        }
+      }
+
+      const deleteContact = async (no) => {
+        try {
+          const resp = await fetch(baseURL + no, {
+            method: 'delete',
+            body: {},                 // server에 전송할 값
+            headers: {},
+          });
+          const data = await resp.json();
+          // console.log(data);
+          if(data.status === 'success') {
+            location.assign('contactList.html');
+          } else {
+            alert('삭제 실패');
+          }
+        } catch(err) {
+          // alert('삭제 실패');
+          console.error(err);
+        }
+      }
+     
+      getContact(search[1]);
+
+      
+      document.querySelector('button[name="list"]').addEventListener('click', function(evt) {
+        location.assign('contactList.html');
+      });
+
+      document.querySelector('[name="delete"]').addEventListener('click', function(evt){
+        deleteContact(search[1]);
+      });
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+

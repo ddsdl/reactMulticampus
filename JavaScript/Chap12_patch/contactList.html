@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>List</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    
+  </head>
+  <body>
+    <div class="card-body">
+      <h2>3. 연락처 서비스</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Tel</th>
+            <th>Address</th>
+            <th>Img</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <button class="btn btn-primary" id="addBtn">ADD</button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <script type="text/javascript">
+      const baseURL = 'https://sample.bmaster.kro.kr/contacts/';
+      const tbody = document.querySelector('#tbody');
+
+      /*
+      const getContactList = (no, size) => {
+        // 웹 표준은 아니다.
+        // GET => fetch(address)
+        fetch(baseURL)
+        .then((resp) => {
+          // console.log(resp);
+          // return resp.text();
+          return resp.json();
+        })
+        .then((resp) => {
+          console.log(resp);
+          resp.contacts.forEach((item, index) => {
+            const tr = document.createElement('tr'); 
+            
+            for(const key in item) {           
+              if(item.hasOwnProperty(key)) { 
+                // console.log(key);
+                const td = document.createElement('td');
+                const text = document.createTextNode(item[key]);
+
+                if(key === 'name') {
+                  const link = document.createElement('a');
+                  link.setAttribute('href', 'viewItem.html?no=' + item.no)
+                  link.appendChild(text);
+                  td.appendChild(link);
+                } else if(key === 'photo') {
+                  const img = document.createElement('img');
+                  // console.log(item.photo);
+                  img.setAttribute('src', item.photo);
+                  img.setAttribute('alt', '증명사진');
+                  img.setAttribute('width', '70px');
+                  td.appendChild(img);
+                } else {
+                  td.appendChild(text);
+                }
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+              }
+            }
+            
+          })
+        })
+        .catch((err) => console.error(err));
+      }
+      */
+
+      // async ~ await 구문 사용
+      const getContactList = async (no = 1, size = 10) => {
+        try {
+          const resp = await fetch(`${baseURL}?pageno=${no}&pagesize=${size}`);
+          const data = await resp.json();
+
+          data.contacts.forEach((item, index) => {
+            const tr = document.createElement('tr'); 
+            
+            for(const key in item) {           
+              if(item.hasOwnProperty(key)) { 
+                const td = document.createElement('td');
+                const text = document.createTextNode(item[key]);
+
+                if(key === 'name') {
+                  const link = document.createElement('a');
+                  link.setAttribute('href', 'viewItem.html?no=' + item.no)
+                  link.appendChild(text);
+                  td.appendChild(link);
+                } else if(key === 'photo') {
+                  const img = document.createElement('img');
+                  img.setAttribute('src', item.photo);
+                  img.setAttribute('alt', '증명사진');
+                  img.setAttribute('width', '70px');
+                  td.appendChild(img);
+                } else {
+                  td.appendChild(text);
+                }
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+              }
+            }
+          })
+        }catch(err) {
+          console.error(err)
+        }
+      }
+
+
+      getContactList();
+
+      document.querySelector('#addBtn').addEventListener('click', function(evt){
+        location.href = 'addItem.html';
+      });
+    </script>
+  </body>
+</html>
