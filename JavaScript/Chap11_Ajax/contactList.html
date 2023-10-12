@@ -38,7 +38,7 @@
       const tbody = document.querySelector('#tbody');
 
       const xhr = new XMLHttpRequest();     // fetch로 변경될 가능성 있음
-      xhr.open('GET', baseURL);             // 요청 준비
+      xhr.open('GET', baseURL + '?pageno=1&pagesize=10');             // 요청 준비
       xhr.send();                           // 요청. 서버에 전달달 데이터를 ()안에 넣어서 전달한다
 
       // Event base 기반 
@@ -60,13 +60,27 @@
                 // console.log(key);
                 const td = document.createElement('td');
                 const text = document.createTextNode(item[key]);
-                td.appendChild(text);
+
+                if(key === 'name') {
+                  const link = document.createElement('a');
+                  link.setAttribute('href', 'viewItem.html?no=' + item.no)
+                  link.appendChild(text);
+                  td.appendChild(link);
+                } else if(key === 'photo') {
+                  const img = document.createElement('img');
+                  // console.log(item.photo);
+                  img.setAttribute('src', item.photo);
+                  img.setAttribute('alt', '증명사진');
+                  img.setAttribute('width', '70px');
+                  td.appendChild(img);
+                } else {
+                  td.appendChild(text);
+                }
                 tr.appendChild(td);
                 tbody.appendChild(tr);
               }
             }
             
-
             /*
             const keys = Object.keys(item);
             // console.log(keys);                     // ['no', 'name', 'tel', 'address', 'photo']
@@ -82,6 +96,9 @@
         }
       })
 
+      document.querySelector('#addBtn').addEventListener('click', function(evt){
+        location.href = 'addItem.html';
+      });
     </script>
   </body>
 </html>

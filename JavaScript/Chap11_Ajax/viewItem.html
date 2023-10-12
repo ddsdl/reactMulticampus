@@ -17,13 +17,64 @@
       Address: <input type="text" class="form-control" name="address"  readonly/>
       <br />
       
-      <button class="btn btn-primary">LIST</button>
+      <button class="btn btn-primary" name="list">LIST</button>
+      <button class="btn btn-danger" name="delete">DELETE</button>
     </div>
 
     <script type="text/javascript">
-      const baseURL = 'http://sample.bmaster.kro.kr/contacts/';
+       // 주소줄에 ? 다음의 값을 추출 => viewItem.html?no=1601087554678
+       const search = location.search;
+      // console.log(search)
+      // console.log(search.substring(4));
+      // console.log(search.split('='))
+
+
+      const baseURL = 'https://sample.bmaster.kro.kr/contacts/';
+
+      const getContact = function(no) {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', baseURL + no);
+        xhr.send();
+
+        xhr.addEventListener('load', function() {
+          if(xhr.status === 200) {
+            const resp = JSON.parse(xhr.responseText);    // 자바스크립트 데이터로 변경
+            // console.log(resp);
+            document.querySelector('[name="name"]').value = resp.name;
+            document.querySelector('[name="tel"]').value = resp.tel;
+            document.querySelector('[name="address"]').value = resp.address;
+          }
+        })
+      }
+
+      const deleteContact = (no) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('delete', baseURL + no);
+        xhr.send();
+
+        xhr.addEventListener('load', function() {
+          if(xhr.status === 200) {
+            const resp = JSON.parse(xhr.responseText);    // 자바스크립트 데이터로 변경
+            console.log(resp);
+            if(resp.status === 'success') {
+              location.assign('contactList.html');
+            } else {
+              alert('삭제 실패');
+            }
+          }
+        })
+      }
+     
+      getContact(search.substring(4));
+
       
-      
+      document.querySelector('button[name="list"]').addEventListener('click', function(evt) {
+        location.assign('contactList.html');
+      });
+
+      document.querySelector('[name="delete"]').addEventListener('click', function(evt){
+        deleteContact(search.substring(4));
+      });
     </script>
   </body>
 </html>
