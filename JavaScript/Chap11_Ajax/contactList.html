@@ -33,7 +33,54 @@
     </div>
 
     <script type="text/javascript">
-      const baseURL = 'http://sample.bmaster.kro.kr/contacts/';
+      const baseURL = 'https://sample.bmaster.kro.kr/contacts/';
+
+      const tbody = document.querySelector('#tbody');
+
+      const xhr = new XMLHttpRequest();     // fetch로 변경될 가능성 있음
+      xhr.open('GET', baseURL);             // 요청 준비
+      xhr.send();                           // 요청. 서버에 전달달 데이터를 ()안에 넣어서 전달한다
+
+      // Event base 기반 
+      // data가 성공적으로 왔으면
+      xhr.addEventListener('load', function() {
+        // console.log(xhr);
+        if(xhr.status === 200) {
+          // JSONData => JavaScript Data  
+          const data = JSON.parse(xhr.responseText);
+          console.log(data);
+
+          data.contacts.forEach((item, index) => {
+            // item => {no: 1696928000444, name: '쯔위', tel: '010-2121-2323', address: '대만', photo: 'noimage.jpg'}
+
+            const tr = document.createElement('tr');    // <tr></tr>
+            
+            for(const key in item) {                // object는 of로 순환안됨. of는 iterable 객체를 상속받은 객체만 가능
+              if(item.hasOwnProperty(key)) {        // 자신의 프로퍼티 5개만 반복. 상위 prototype 요소는 배제
+                // console.log(key);
+                const td = document.createElement('td');
+                const text = document.createTextNode(item[key]);
+                td.appendChild(text);
+                tr.appendChild(td);
+                tbody.appendChild(tr);
+              }
+            }
+            
+
+            /*
+            const keys = Object.keys(item);
+            // console.log(keys);                     // ['no', 'name', 'tel', 'address', 'photo']
+            keys.forEach((key) => {
+              const td = document.createElement('td');          // <td></td>
+              const text = document.createTextNode(item[key]);
+              td.appendChild(text);
+              tr.appendChild(td);
+              tbody.appendChild(tr);
+            });
+            */
+          })
+        }
+      })
 
     </script>
   </body>
