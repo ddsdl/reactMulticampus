@@ -33,7 +33,40 @@
       </ul>
     </div>
     <script type="text/javascript">
-      (function () {})();
+      (function () {
+        const btn01Event = function(evt) {
+          const movies = document.querySelector('#movies');
+          const firstChild = movies.firstElementChild;
+          if(firstChild && firstChild.nextElementSibling) {
+            const two = firstChild.nextElementSibling;
+            alert(two.textContent);
+          }
+        }
+        const btn02Event = function(evt) {
+          const li = document.createElement('li');      // <li></li>
+          // li.append('우유');
+          const text = document.createTextNode('우유');
+          li.appendChild(text);
+
+          const purchases = document.querySelector('#purchases');
+          // purchases.append(li);
+
+          // 원하는 위치에 추가
+          purchases.insertBefore(li, purchases.children[1]);
+        }
+        const btn03Event = function(evt) {
+          
+        }
+
+        const btn01 = document.querySelector('button');
+        const btn02 = btn01.nextElementSibling;
+        const btn03 = btn02.nextElementSibling;
+
+        btn01.addEventListener('click', btn01Event);
+        btn02.addEventListener('click', btn02Event);
+        btn03.addEventListener('click', btn03Event);
+
+      })();
     </script>
   </body>
 </html>

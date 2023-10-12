@@ -18,6 +18,53 @@
       </ul>
     </div>
 
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      console.log(document.childNodes);     // DocType, html
+      console.log(document.parentNode);     // null
+      console.log(document.childNodes[1].childNodes);
+
+      /*
+        1: 요소 Element(Tag)
+        2: 속성 Attribute(tag 속성)
+        3: text
+        8: 주석
+      */
+      console.log(document.childNodes[1].nodeType);   // 1
+      console.log(document.childNodes[1].nodeName);   // HTML - 항상 대문자다
+      // document.childNodes[1].addEventListener('click', function(){});
+
+      // 범위를 좁혀서 찾자
+      const list = document.getElementById('list');
+      console.log(list.childNodes);
+      console.log(list.parentNode);
+      console.log('');
+
+      // 자식 요소를 탐색
+      console.log(list.firstChild, list.lastChild);   // #text, #text
+      console.log(list.firstChild.nextSibling.textContent);       // 첫번째 li
+      console.log(list.lastChild.previousSibling.textContent);    // 세번째 li
+      console.log('');
+
+      // 유사배열
+      console.log(list.childNodes[1].textContent);
+      console.log(list.childNodes[3].textContent);
+      console.log(list.childNodes[1].nodeType);
+      console.log(list.childNodes[1].nodeName);
+      console.log('');
+
+
+      // HTML 요소만 추출
+      console.log(list.children);           // HTML 요소 3개만 추출된다 - 유사배열
+      console.log(list.childElementCount);  // 3
+      console.log('');
+
+      console.log(list.firstElementChild.textContent);
+      console.log(list.lastElementChild.textContent);
+
+      console.log(list.firstElementChild.nextElementSibling);     // 2
+      console.log(list.lastElementChild.previousElementSibling);  // 2
+      console.log(list.children[1].textContent);
+
+    </script>
   </body>
 </html>

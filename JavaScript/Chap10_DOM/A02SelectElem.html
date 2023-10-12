@@ -11,6 +11,17 @@
     <div class="card-body">
       <h2>Select Element</h2>
 
+      <form method="get" action="A01Node.html">
+        <input type="text" name="name" class="form-control">
+        <input type="text" name="password" class="form-control">
+      </form>
+
+      <form method="get" action="A02ABC.html">
+        <input type="text" name="name" class="form-control">
+        <input type="text" name="password" class="form-control">
+      </form>
+      
+
       <div>
         <div id="title" class="c">Event의 함수는 익명 함수</div>
 
@@ -20,9 +31,42 @@
           <li>List 03</li>
         </ul>
 
-        <button id="click" class="btn">Click</button>
+        <button id="btn01" class="btn">Click 01</button>
+        <button id="btn01" class="btn">Click 02</button>
       </div>
     </div>
-    <script></script>
+
+    <script>
+      (function() {
+        // const btn = document.getElementById('btn01');      // 처음 매칭된 1개만 가져온다
+
+        // getElementById 이외는 모두 복수(유사 배열)로 가져온다
+
+        // tag 이름으로 추출
+        // const btn = document.getElementsByTagName('button');
+        // btn[0].addEventListener('click', function(evt){ });
+
+        // class 이름으로 추출
+        // const btn = document.getElementsByClassName('btn');
+        // btn[0].addEventListener('click', function(evt){ });
+
+        // form 요소는 name 속성 할당 가능. 이 name 속성을 기반으로 추출
+        // const btn = document.getElementsByName('name');
+        // btn[0].addEventListener('keyup', function(evt){ });
+
+        // 위의 모든 선택을 querySelector, querySelectorAll로 해결 가능
+        // 두개의 함수는 요소의 선택을 css의 선택자 선언 방식을 이용한다
+        // querySelector(선택자) => 최초 매칭된 1개만. 따라서 동작은 getElementById()와 유사하다
+        // querySelectorAll(선택자) => 매칭된 모든 요소. 따라서 동작은 getElements...와 유사하다
+
+        // const btn = document.querySelector('#btn01');      // 처음 매칭 1개
+        // const btn = document.querySelectorAll('#btn01');
+
+        // const btn = document.querySelector('input[name="name"]');
+        const btn = document.querySelectorAll('input[name="name"]');
+
+        console.log(btn);
+      })();
+    </script>
   </body>
 </html>

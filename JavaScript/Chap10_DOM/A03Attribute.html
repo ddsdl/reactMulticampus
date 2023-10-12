@@ -10,7 +10,7 @@
   <body>
     <div class="card-body">
       <h2>Element Attribute</h2>
-
+      
       <div>
         <a href="http://www.google.com">GOOGLE</a>
       </div>
@@ -23,6 +23,63 @@
       </form>
       <div id="result"></div>
     </div>
-    <script type="text/javascript"></script>
+
+    <script type="text/javascript">
+      const google = document.querySelector('[href="http://www.google.com"]');
+      
+      // 속성 값 취득. HTML 기술되어 있는 속성의 값을 참조
+      const hrefAttr = google.getAttribute('href');
+      // console.log(hrefAttr);
+
+      const nameInput = document.querySelector('[name="name"]');
+      nameInput.value = hrefAttr;
+
+      // 속성이 있니?
+      if(!google.hasAttribute('title')) {   // HTML에 기술된 속성이 있니?
+        // 속성 추가. 적용한 요소에 HTML 속성을 추가
+        google.setAttribute('title', '구글로 이동합니다...');
+      }
+
+      // 전체 속성
+      const attrs = google.attributes;
+      // console.log(attrs);                // 유사배열
+      for(let i = 0; i < attrs.length; i++) {
+        const attr = attrs[i];
+        console.log(`${attr.name} / ${attr.value}`);
+      };
+
+      // 속성 삭제
+      google.removeAttribute('href');
+      console.log('');
+
+      // form 요소에 사용자가 입력한 값을 서버에 전송
+      const sendData = {};
+      const sendBtn = document.querySelector('button[type="submit"]');
+
+      sendBtn.addEventListener('click', function(evt) {
+        evt.preventDefault();
+
+        const form = document.querySelector('form');
+        for(let i = 0; i < form.children.length; i++) {
+          const elem = form.children[i];
+          if(elem.nodeType === 1 && elem.nodeName === 'INPUT') {
+            const name = elem.getAttribute('name');
+
+            if(elem.value.trim() === '') {
+              alert('반드시 입력해야 합니다');
+              elem.focus();                 // 입력할수 있도록 커서를 위치시킨다
+              return;                       // 실행을 중단하고 호출한 곳으로 이동시킨다.
+            } else {
+              sendData[name] = elem.value;
+            }
+          }
+        }
+
+        // 서버로 전송
+        console.log(sendData);
+      })
+
+
+    </script>
   </body>
 </html>
