@@ -24,6 +24,15 @@
         <div id="two">Class Test</div>
       </div>
     </div>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+      const one = document.querySelector('#one');
+      one.style.backgroundColor = 'gray';
+      one.style.color = 'white';
+      one.style.fontWeight = 'bold';
+      one.style.padding = '10px';
+
+      const two = document.querySelector('#two');
+      two.className = 'two';
+    </script>
   </body>
 </html>

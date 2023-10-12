@@ -55,7 +55,13 @@
           purchases.insertBefore(li, purchases.children[1]);
         }
         const btn03Event = function(evt) {
+          const listArr = document.querySelectorAll('.list');
           
+          for(let i = 0; i < listArr.length; i++) {
+            const elem = listArr[i];
+            const firstElem = elem.firstElementChild;
+            if(firstElem) firstElem.remove();
+          }
         }
 
         const btn01 = document.querySelector('button');
