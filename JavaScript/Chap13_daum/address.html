@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+  <title>Daum Address</title>
+</head>
+<body>
+  <div class="m-3">
+    <h1>Daum Address</h1>
+
+    <form>
+      <div class="mb-3">
+        <label for="name" class="form-label">이름</label>
+        <input type="text" id="name" name="name" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label for="address" class="form-label">주소</label>
+        <input type="text" id="address" name="address" class="form-control" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="address_detail" class="form-label">상세주소</label>
+        <input type="text" id="address_detail" name="address_detail" class="form-control">
+      </div>
+
+      <div>
+        <button type="submit">SEND</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    document.querySelector('#address').addEventListener('click', function(){
+      new daum.Postcode({
+        oncomplete: function(data) {
+          console.log(data);
+          document.querySelector('#address').value = data.address;
+          document.querySelector('#address_detail').focus();
+        }
+      }).open();
+    })
+  </script>
+
+</body>
+</html>
