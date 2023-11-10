@@ -121,7 +121,7 @@ SELECT
   SUBDATE('2030-01-05 10:00:00.000000', INTERVAL '1.000005' SECOND_MICROSECOND);
 
 
--- 시간만 조작
+-- 시간만 조작. TIME_ADD는 없음..
 SELECT 
   NOW(),
   ADDTIME(NOW(), '10'),       -- 기본이 초
@@ -140,7 +140,13 @@ SELECT
 
 -- 연습문제
 -- 이름이 'A'로 시작되는 사원의 입사 30주년이 되는 날은?
-
+SELECT employee_id, first_name, hire_date, 
+FROM employees
+WHERE 
 
 -- 사원의 이름, 나이 조회, 나이는 입사일을 생년월일로 한다
 -- 출력 형태는 20세 3개월 형태가 되도록 출력
+SELECT employee_id, first_name, hire_date, 
+  TIMESTAMPDIFF(MONTH, hire_date, NOW())
+FROM employees
+WHERE department_id = 60;
