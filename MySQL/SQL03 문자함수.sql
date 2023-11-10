@@ -170,4 +170,3 @@ SELECT
 FROM employees
 WHERE SUBSTR(hire_date, 3, 4) IN(94, 95)
 ORDER BY employee_id;
-
