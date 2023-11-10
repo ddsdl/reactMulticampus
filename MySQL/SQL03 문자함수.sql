@@ -132,17 +132,42 @@ SELECT
 
 -- 연습문제
 -- 사원명을 모두 대문자로 스페이스로 이어서 표시
-SELECT employee_id, ? AS name, salary
+SELECT 
+  employee_id, 
+  CONCAT(UPPER(first_name), ' ', UPPER(last_name)) AS name, 
+  salary
 FROM employees;
 
 
 -- 사원중 first_name이 10글자 이상인 직원을 출력하시오
-
+SELECT 
+  employee_id, 
+  CONCAT(UPPER(first_name), ' ', UPPER(last_name)) AS name, 
+  salary
+FROM employees
+WHERE CHAR_LENGTH(first_name) >= 10;
 
 
 -- first_name 첫 글자 다음에 -를 추가해서 출력 ex] 'Adam' => 'A-dam'
+SELECT 
+  employee_id, 
+  first_name,
+  CONCAT(SUBSTR(first_name, 1, 1), '-', SUBSTR(first_name, 2))
+  salary
+FROM employees
+WHERE department_id IN(60, 70);
+
+select insert(first_name, 2, 0, '-')
+from employees; 
 
 
 -- 입사 연도가 94, 95년도인 직원을 출력하시오.
-
+SELECT 
+  employee_id, 
+  first_name,
+  hire_date,
+  salary
+FROM employees
+WHERE SUBSTR(hire_date, 3, 4) IN(94, 95)
+ORDER BY employee_id;
 
