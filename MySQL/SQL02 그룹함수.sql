@@ -128,3 +128,38 @@ SELECT
 FROM employees
 GROUP BY department_id
 WITH ROLLUP;                -- 맨 마지막 줄에 합을 구해준다.
+
+-- 연습문제
+-- 1. department_id 별 급여합계, 인원수, 평균을 소수점 2자까지 산출(이하 버림)
+SELECT department_id, SUM(salary), COUNT(*), 
+  TRUNCATE(AVG(salary), 2), TRUNCATE(SUM(salary) / COUNT(*), 2)
+FROM employees
+GROUP BY department_id;
+
+-- 2. manager_id 별 관리 인원수 산출. 단 2명 이상인 부서만 출력
+SELECT manager_id, COUNT(*)
+FROM employees
+GROUP BY manager_id
+HAVING COUNT(*) >= 2
+ORDER BY COUNT(*);
+
+-- 3. 웝급이 5000 이상 받는 직원의 수를 부서별로 출력. 단 2명 이상인 부서만 출력
+SELECT department_id, COUNT(*)
+FROM employees
+WHERE salary >= 5000
+GROUP BY department_id
+HAVING COUNT(*) >= 2;
+
+-- 4. department_id가 50번인 직원의 각 manager별 인원수, 평균 월급 조회
+SELECT manager_id, COUNT(*), AVG(salary)
+FROM employees
+WHERE department_id = 50
+GROUP BY manager_id;
+
+-- 5. 직원의 평균 급여가 7000 이상인 부서 조회. NULL 제외. 소수점은 2자리에서 반올림
+SELECT department_id, ROUND(AVG(salary), 2)
+FROM employees
+WHERE department_id IS NOT NULL
+GROUP BY department_id
+HAVING AVG(salary) >= 7000;
+

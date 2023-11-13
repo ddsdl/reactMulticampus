@@ -65,15 +65,30 @@ SELECT LAST_DAY(NOW()), LAST_DAY('2030-2-5');
 -- %I 시간 (12시간), %H시간(24시간) %i분
 -- %a짧은 요일 이름(영문)    
 -- %rhh:mm:ss AM,PM  %Thh:mm:SS %S초
-
-출처: https://devjhs.tistory.com/89 [키보드와 하루:티스토리]
+-- 출처: https://devjhs.tistory.com/89 [키보드와 하루:티스토리]
 SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %W %p %H:%i%s');
 SELECT DATE_FORMAT(NOW(), '%y-%m-%d %a %p %h:%i%s');
 
 
 -- 날짜와 날짜 사이의 일수 구하기
+SELECT DATEDIFF('2023-12-31', NOW());
+
+-- 년, 월, 일, 시(HOUR), 분(MINUTE), 초(SECOND)를 지정해서 해당 값의 차이만 구한다
 SELECT
-  DATEDIFF('2023-12-31', NOW());
+  TIMESTAMPDIFF(YEAR, '2025-12-31', NOW()),
+  TIMESTAMPDIFF(MONTH, '2023-12-31', NOW()),
+  TIMESTAMPDIFF(DAY, '2023-12-31', NOW())
+  
+
+-- EXTRACT (결과가 숫자)
+-- MINUTE_SECOND, MINUTE_MICROSECOND
+-- HOUR_MINUTE, HOUR_SECOND, HOUR_MICROSECOND
+-- DAY_HOUR, DAY_MINUTE, DAY_SECOND, DAY_MICROSECOND
+SELECT
+  EXTRACT(YEAR FROM NOW()),
+  EXTRACT(MINUTE_SECOND FROM NOW())
+  
+
 
 -- 시간과 시간 사이의 일수 구하기
 SELECT TIMEDIFF('23:59:59', '12:10:30');
@@ -141,12 +156,14 @@ SELECT
 -- 연습문제
 -- 이름이 'A'로 시작되는 사원의 입사 30주년이 되는 날은?
 SELECT employee_id, first_name, hire_date, 
+  ADDDATE(hire_date, INTERVAL 30 YEAR) 30주년
 FROM employees
-WHERE 
+WHERE first_name LIKE 'A%';
 
 -- 사원의 이름, 나이 조회, 나이는 입사일을 생년월일로 한다
 -- 출력 형태는 20세 3개월 형태가 되도록 출력
 SELECT employee_id, first_name, hire_date, 
-  TIMESTAMPDIFF(MONTH, hire_date, NOW())
+  CONCAT( TRUNCATE( TIMESTAMPDIFF(MONTH, hire_date, NOW()) / 12, -1 ), '대') AS year,
+  CONCAT(TIMESTAMPDIFF(MONTH, hire_date, NOW()) % 12, '개월') AS month
 FROM employees
 WHERE department_id = 60;
