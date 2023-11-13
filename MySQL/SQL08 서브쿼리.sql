@@ -99,20 +99,61 @@ WHERE salary = SOME (
   WHERE department_id = 100
 );
 
+-- 서브쿼리 결과 자체가 1개의 테이블로 취급할 수 있다
+SELECT employee_id, first_name, e.salary, hire_date, e.department_id
+FROM employees e INNER JOIN (SELECT salary, department_id
+                              FROM employees 
+                              WHERE department_id = 100) d
+      ON e.salary = d.salary AND e.department_id = d.department_id;
+
+
 
 -- 연습문제
 -- 1. first_name이 Den인 직원보다 월급을 많이 받는 직원은?
+SELECT salary FROM employees WHERE first_name = 'Den'
 
+SELECT first_name, salary
+FROM employees
+WHERE salary = (SELECT salary FROM employees WHERE first_name = 'Den');
 
+SELECT first_name, e.salary
+FROM employees e INNER JOIN (SELECT salary FROM employees WHERE first_name = 'Den') d
+WHERE e.salary = d.salary;
 
 
 -- 2. 직원 중 manager_id가 Adam과 같은 직원은?
+SELECT manager_id FROM employees WHERE first_name = 'Adam';
+
+SELECT first_name, salary, manager_id
+FROM employees
+WHERE manager_id = (SELECT manager_id FROM employees WHERE first_name = 'Adam');
 
 
 -- 3. department_id가 50번인 직원의 평균 월급보다 많이 받는 직원은?
+SELECT AVG(salary) FROM employees WHERE department_id = 50;
+
+SELECT first_name, salary, manager_id
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees WHERE department_id = 50);
 
 
 -- 4. 직원중 월급을 가장 많이 받는 직원의 정보 출력
+SELECT MAX(salary) FROM employees;
+
+SELECT first_name, MAX(salary) 
+FROM employees
+GROUP BY first_name;
+
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary = (SELECT MAX(salary) FROM employees);
 
 
 -- 5. 90번 부서의 인원보다 직원이 많은 부서는 ?
+SELECT COUNT(*) FROM employees WHERE department_id = 90
+
+SELECT department_id, COUNT(*)
+FROM employees
+GROUP BY department_id
+HAVING COUNT(*) > (SELECT COUNT(*) FROM employees WHERE department_id = 90);
+
