@@ -213,10 +213,30 @@ ORDER BY e.employee_id;
 -- 연습문제
 -- 1. JOB 타이틀이 Accountant인 직원의 first_name, job_id, job_title, salary를 표시
 
+SHOW TABLES;
+SELECT * FROM jobs;
+SELECT * FROM employees;
+
+SELECT first_name, e.job_id, job_title, salary
+FROM employees e
+  INNER JOIN jobs j ON e.job_id = j.job_id;
 
 
 -- 2. 사원의 이름, 부서번호, 소속 부서명 조회. 단 부서번호가 70. 80번인 부서만 조회
+SELECT first_name, e.department_id, department_name
+FROM employees e
+  INNER JOIN departments d ON e.department_id = d.department_id
+WHERE e.department_id IN (70, 80);
 
 -- 3. 각 부서의 부서번호, 부서명, 부서 도시명을 조회
+SELECT first_name, e.department_id, department_name, city
+FROM employees e
+  INNER JOIN departments d ON e.department_id = d.department_id
+  JOIN locations loc ON d.location_id = loc.location_id;
 
 -- 4. 사원이름, 부서번호, 부서명, 근무도시 출력. 부서 번호가 없는 직원도 출력
+SELECT first_name, e.department_id, department_name, city
+FROM employees e
+  LEFT OUTER JOIN departments d ON e.department_id = d.department_id
+  LEFT OUTER JOIN locations loc ON d.location_id = loc.location_id;
+
