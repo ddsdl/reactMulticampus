@@ -189,7 +189,7 @@ FROM employees e
 UNION
 SELECT employee_id, first_name, salary, hire_date, e.department_id, department_name, location_id
 FROM employees e 
-  RIGHT OUTER JOIN departments d ON e.department_id = d.department_id
+  RIGHT OUTER JOIN departments d ON e.department_id = d.department_id;
 
 
 -- SELF JOIN
