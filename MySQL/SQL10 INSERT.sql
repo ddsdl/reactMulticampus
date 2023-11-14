@@ -48,7 +48,7 @@ SELECT * FROM dept;
 -- emp
 -- department_id가 departments 테이블의 department_id를 참조하고 있으므로
 -- departments 테이블의 department_id가 있는 값만 입력 가능 또는 NULL
-INSERT INTO emp VALUES(100, '홍', '길동', 'hong@abc.com', '010-1234-5678', NOW(), 'AV_ABC', 5000, NULL, NULL, 120);
+INSERT INTO emp VALUES(100, '홍', '길동', 'hong@abc.com', '010-1234-5678', NOW(), 'AV_ABC', 5000, NULL, NULL, NULL);
 
 -- 원하는 항목만 대입
 -- employee_id => AUTO_INCREMENT
@@ -91,3 +91,17 @@ DELETE FROM emp WHERE employee_id = 102;
 
 SELECT * FROM emp;
 
+-- 트랜젝션
+-- COMMIT / ROLLBACK
+UPDATE emp SET salary = 3500, commission_pct = 0.1
+  WHERE salary = 3800;
+
+DELETE FROM emp;
+
+-- 이전 작업이 완료된 시점까지 다시 복구를 한다.
+ROLLBACK;
+
+-- 여기까지 작업을 적용한다 - COMMIT을 실행하면 이전 작업 복구 안됨
+COMMIT;
+
+SELECT * FROM emp;
