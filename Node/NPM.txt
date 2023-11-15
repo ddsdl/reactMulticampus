@@ -8,7 +8,7 @@ npm 명령 간략 설명
     npmjs.com에서 검색하는 것이 보기 좋다.
 
   2. 상세 정보
-    npm info moduleName
+    npm info(view) moduleName
   
   3. version 정보
     npm info moduleName version

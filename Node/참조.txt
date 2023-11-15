@@ -5,7 +5,6 @@
 Git
 
 
-
 참조 URL
   Node:       https://nodejs.org/ko/
   VSCode:     https://code.visualstudio.com/
@@ -28,10 +27,10 @@ VSCode 기본 설정
   3. Default Formatter ( 검색창에 formatter로 검색)
     => TypeScript And JavaScript...
     => Prettier 플러그인 설치 후는 pretter로 설정
-  4. Format on Save 
-    => check
+  4.
   5. Compact Folders
-    => check 해제
+    => check 해제 Format on Save 
+    => check
 
 세팅 바로가기
   View => Command Palette(ctrl + shift + p)

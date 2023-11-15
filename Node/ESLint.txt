@@ -17,7 +17,7 @@ ESLint
       ✔ What type of modules does your project use? · 프로젝트에서 사용하는 모듈 방식은?
 	        JavaScript => import/export
         	Node => require
-          	JavaScript modules (import/export)
+          	CommonJS (require/exports)
       ✔ Which framework does your project use? · 프로젝트에서 사용하는 프레임워크는?
 	        ES6
       ✔ Does your project use TypeScript? · 타입스크립트 사용 여부?
@@ -30,6 +30,7 @@ ESLint
 	        JSON
 
       npx eslint A01_Variable.js      검사 실행
+
         "eslint:recommended"는 rules page에 있는 체크표시된 모든 규칙들을 활성화.
         참조] https://eslint.org/docs/rules/
 
@@ -44,12 +45,12 @@ ESLint
       base는 관련 규칙을 포함하지 않는 것이다. base로 설치하려면 아래 명령어에서 airbnb 뒤에 -base 를 붙인다.
 
       $ npm info "eslint-config-airbnb@latest"    확인
-      $ npx i -D eslint-config-airbnb             설치 
-      $ npx i -D eslint-config-google
+      $ npm i -D eslint-config-airbnb             설치 
+      $ npm i -D eslint-config-google
 
       .eslintre.json에 추가
         "extends": [
-          "airbnb", 
+          "google", 
           "eslint:recommended",
         ],
 
