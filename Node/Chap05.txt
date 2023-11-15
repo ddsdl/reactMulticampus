@@ -1,0 +1,64 @@
+* 웹 어플리케이션 개발시 일반적으로 처리해야 할 작업
+    1. 로깅(logger)
+    2. url 텍스트 인코딩
+    3. POST 방식의 요청 바디 파싱
+    4. JSON 방식의 데이터 파싱
+    5. 쿠키 파싱
+    6. 정적인 자원 응답(static)
+    7. 세션 관리
+    8. 동적인 자원 응답
+    9. 파일 업로드
+    10. 보안(인증, 권한)
+    11. 에러 처리
+    ......
+
+각각의 기능을 독립적인 모듈(함수)로 작성(미들웨어)
+
+
+Module
+    npm i mime
+    npm i dotenv
+    npm i connect
+    npm i body-parser
+
+    npm i express-session
+    npm i morgan
+    npm i serve-static
+    npm i ejs
+    
+    npm i socket.io
+
+
+진행 순서
+step01
+    static Server 구현
+    로그파일 생성
+
+step02
+    app.js
+    www.js로 분리
+
+    app.js 파일을 middleware로 분리
+    Error 처리
+    Error 상태 브라우저에 표시
+
+step03
+    connect의 이용.
+
+    connect 확장모듈 사용
+        - 미들웨어를 관리하는 컨테이너
+        - connect@2: 미들웨어 관리 + 미들웨어 직접 제공
+        - connect@3: 미들웨어 관리
+
+step04
+    route 생성
+
+    login 패스 변경
+    username 처리.
+
+step05
+    외부 모듈로 대체
+    session 처리
+
+step06
+    ejs

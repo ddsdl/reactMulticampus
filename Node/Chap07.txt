@@ -1,0 +1,16 @@
+설치
+    npm i -g express-generator
+
+프로젝트 생성
+    express Chap07_ExpressChat --view=ejs
+
+Module 설치
+    cd projectName
+    npm i
+
+    npm i mime dotenv express-session socket.io multer iconv-lite
+
+package.json 변경
+    "start": "nodemon ./bin/www"
+
+파일 복사 후 실습

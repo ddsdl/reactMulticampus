@@ -1,0 +1,9 @@
+package.json 생성
+    npm init -y
+
+Module 설치
+    npm i express
+    npm i mogan
+
+package.json 변경
+    "start": "nodemon ./bin/www"
