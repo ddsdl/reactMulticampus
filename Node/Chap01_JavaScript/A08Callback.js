@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 console.log('---------------- 중첩함수, 콜백함수 -----------------');
 
 // 중첩 함수
@@ -83,7 +84,7 @@ console.log('');
 
 // outerThree()이 먼저 실행되고 리턴되는 값이 inner라는 함수를 outerThree 실행후에
 // 반환된 inner를 함수로써 실행 ( ) 해라
-// outerThree() => inner  => (60) => inner(60);
+// outerThree() => inner  => (60) => inner(60) => outerThree()(60);
 outerThree()(60);
 console.log('');
 
@@ -93,3 +94,147 @@ const onAdd = function (x, y) {
 const sum = onAdd(10, 20);
 console.log(sum);
 console.log(onAdd(10, 20));
+console.log('');
+
+// 함수를 매개변수로 전달하자 - 함수 내부에서 실행하는 구문이 시간이 걸리는 경우
+const three = function (ms) {
+  console.log('main process 처리 하는 함수 three 시작');
+
+  const now = Date.now(); // 1970-01-01 00:00:00 기준으로 현재까지 경과 시간을 밀리초(1000)로 리턴
+  // eslint-disable-next-line no-empty
+  while (now + ms > Date.now()) {} // 지정한 시간동안 아무것도 안함 (시간 걸리는 작업)
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+  console.log(`result=> ${result} / ${ms}`);
+
+  console.log('main process 처리 하는 함수 three 종료');
+};
+// three(500);
+
+const four = function (ms) {
+  console.log('----- four START -----');
+
+  // setTimeout을 Ajax 요청으로 생각하고 실행
+  setTimeout(function () {
+    console.log('서버로부터 결과값 받아옴...');
+  }, ms);
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+  console.log(`result=> ${result} / ${ms}`);
+
+  console.log('----- four END -----');
+};
+// four(2000);
+
+const func = function () {
+  console.log('서버로부터 결과값 받아옴...');
+};
+// console.log(func);
+const five = function (ms, cb) {
+  console.log('----- five START -----');
+
+  // setTimeout을 Ajax 요청으로 생각하고 실행
+  // document.addEventListener('click', func) 와 동일한 구문
+  setTimeout(cb, ms);
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+  console.log(`result=> ${result} / ${ms}`);
+
+  console.log('----- five END -----');
+};
+// five(3000, func);
+
+const six = function (ms) {
+  console.log('----- six START -----');
+
+  setTimeout(function () {
+    // 시간이 걸리는 작업을 함수로 묶어 처리
+    const x = 10;
+    const y = 20;
+    const result = x + y;
+
+    console.log(`result=> ${result} / ${ms}`);
+  }, ms);
+
+  console.log('----- six END -----');
+};
+// six(3000);
+
+const funcSeven = function () {
+  // 시간이 걸리는 작업을 함수로 묶어 처리
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+
+  console.log(`result=> ${result}`);
+};
+
+const seven = function (ms, cb) {
+  console.log('----- seven START -----');
+
+  setTimeout(cb, ms);
+
+  console.log('----- seven END -----');
+};
+// seven(3000, funcSeven);
+
+const seven01 = (cb) => {
+  console.log('----- seven01 START -----');
+
+  cb();
+
+  console.log('----- seven01 END -----');
+};
+// seven01(funcSeven);
+
+// [개념] - 함수가 생성될때 상위 scope chain이 global
+const seven02Func = (x) => {
+  console.log(`Hello World ${x}`);
+};
+
+const seven02 = (cb) => {
+  console.log('----- seven01 START -----');
+
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+
+  // 함수가 생성될때 상위 scope chain이 seven02 => global
+  const seven02Func = () => {
+    console.log(`Hello World ${result}`);
+  };
+  seven02Func();
+
+  // 콜백 함수는 함수가 생성되는 시점이 함수가 정의된 곳에 따라 스코프 체인이 결정되서 매개변수로 전달된다.
+
+  // 이 경우는 콜백함수 seven02Func이 global에 정의되어 있으므로 이 seven02Func의 스코프 체인은 함수 내부 => global 순으로 참조
+  // 따라서 내부 result 값 참조 불가. 값 참초 가능하도록 매개변수로 전달
+  cb(result);
+
+  console.log('----- seven01 END -----');
+};
+// seven02(seven02Func);
+
+const seven03Func = (x) => {
+  console.log(`Hello World ${x}`);
+};
+
+const seven03 = (cb) => {
+  console.log('----- seven01 START -----');
+
+  const x = 10;
+  const y = 20;
+  const result = x + y;
+
+  setTimeout(() => {
+    cb(result);
+  }, 2000);
+
+  console.log('----- seven01 END -----');
+};
+seven03(seven03Func);
+
+console.log('----- main process 종료 -----');
