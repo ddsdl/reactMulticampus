@@ -42,4 +42,19 @@ const readProcess = (txt) => {
   // 파일 기록..
   console.log(txt.toString());
 }
-m04.getText('./index.js', readProcess);
+m04.getText('./M02Function.js', readProcess);
+console.log('');
+
+// Middleware
+const m05 = require('./M05Middleware')({ target: 'file' });
+m05.log('Hello World');
+m05.debug('Good Morning');
+console.log('');
+
+
+const m06 = require('./M06Class');
+// console.log(m06);      // 객체
+const nolbu = new m06.Jumsu('놀부', 100, 90);
+nolbu.display();
+
+// console.log(module);
