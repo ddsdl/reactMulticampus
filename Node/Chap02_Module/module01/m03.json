@@ -1,0 +1,6 @@
+{
+  "name": "JSON Module",
+  "age": 20,
+  "check": true,
+  "onAdd": "(x, y) => x + y"
+}
