@@ -8,9 +8,9 @@ console.log('');
 
 // 전달되는 값 자체가 함수이다
 const m02 = require('./M02Function');
-// console.log(m02);      // 값으로 전달됨
-const result = m02(20, 5);
-console.log(`M02(20, 5) => ${result}`);
+console.log(m02, typeof m02);      // 값으로 전달됨
+// const result = m02(20, 5);
+// console.log(`M02(20, 5) => ${result}`);
 console.log('');
 
 

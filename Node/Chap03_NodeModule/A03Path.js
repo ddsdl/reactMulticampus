@@ -1,5 +1,7 @@
+const path = require('path');
+
 console.log('---------- 구분자 ----------');
-console.log(`sep: `);
+console.log(`sep: ${path.sep}`);
 console.log(`delimiter: `); // 환경변수 구분자 win: ;, Max: :
 console.log('');
 
