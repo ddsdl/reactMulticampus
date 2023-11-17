@@ -13,4 +13,22 @@ console.log(buffer.length);
 console.log('');
 
 // Buffer 결합
-const 
+const arr = [Buffer.from('http://'), Buffer.from('company.com')];
+const company = Buffer.concat(arr);
+console.log(company);
+console.log(company.toString());
+console.log('');
+
+// 빈 Buffer 생성
+const alloc = Buffer.alloc(11);
+console.log(alloc); // 00, 00...
+
+const size = alloc.write('Hello World Good Morning');
+console.log(alloc.toString());
+console.log(size);    // 11
+console.log('');
+
+// 변경
+alloc[0] = 0x41;      // A
+console.log(alloc.toString());
+
