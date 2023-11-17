@@ -36,16 +36,47 @@ console.log('');
 
 
 // resolve는 항상 파일까지의 경로가 추가된다(__dirname)
-console.log(path.relative('public', 'images', 'tree', '.jpg'));
+console.log(path.resolve('public', 'images', 'tree', '.jpg'));
 // 지정된 값만 가지고 연결을 해 준다
 console.log(path.join('public', 'images', 'tree', '.jpg'));
 console.log('');
 
+
 // 둘 다 전체 경로를 반환
+console.log(path.resolve(__dirname, 'public', 'images', 'tree', '.jpg'));
+console.log(path.join(__dirname, 'public', 'images', 'tree', '.jpg'));
 console.log('');
 
 // 전체 경로를 획득할 필요가 있는 경우 resolve가 편하다
+console.log(path.resolve('public', 'images', 'tree', '.jpg'));
+console.log(path.join(__dirname, 'public', 'images', 'tree', '.jpg'));
 console.log('');
 
 // 패스에 /가 넘어오는 경우는 주의
+// resolve는 뒤에서부터 연결, 연결중 루트패스(/)를 만나면 연결을 중단하고 절대패스까지의 경로를 반환
+console.log(path.resolve(__dirname, 'public', '/images', 'tree', '.jpg'));
+// 무조건 모든 패스를 연결한다.
+console.log(path.join(__dirname, '/public', '//images', 'tree', '.jpg'));
 console.log('');
+
+
+console.log(path.isAbsolute('/public/images/tree.jpg'));    // 절대패스 => true
+console.log(path.isAbsolute('./public/images/tree.jpg'));   // 상패패스 => false
+console.log('');
+
+const url = 'C://public\\images\\tree.jpg';
+console.log(path.normalize(url));
+
+
+/*
+  // import 구문을 사용하려면 package.json에 "type" 속성을 추가하고 값으로 반드시 "module"로 지정해야 한다
+  // type: "module"
+
+  // 109 페이지 참조
+  import path from 'path';
+  import { fileURLToPath } from 'url'
+
+  const __dirname = path.resolve();
+  const __filename = fileURLToPath(import.meta.url);
+  
+*/
