@@ -8,21 +8,21 @@ const _emitFunc = (emitter, value) => {
   while (count <= value) {
 
     if (count % 15 === 0) {
-      emitter('all', count);
+      emitter.emit('all', count);
     } else if (count % 3 === 0) {
-      emitter('three', count);
+      emitter.emit('three', count);
     } else if (count % 5 === 0) {
-      emitter('five', count);
+      emitter.emit('five', count);
     }
     count++;
   }
-  emitter('end')
+  emitter.emit('end')
 }
 
 const createEventEmitter = (value) => {
   const emitter = new events.EventEmitter();
 
-  _emitFunc(emitter, value);
+  process.nextTick(() => _emitFunc(emitter, value));
   return emitter;
 }
 
