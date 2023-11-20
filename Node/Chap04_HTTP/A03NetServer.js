@@ -58,9 +58,24 @@ const server = net.createServer((socket) => {
     // index.html => 경로/index.html
     // public/hello.html => 경로/public/hello.html
     const fileName = path.join(__dirname, req.url);
-    console.log(fileName)
+    // console.log(fileName);
 
-    socket.end();
+    fs.readFile(fileName, (err, data) => {
+      if (err) {
+        socket.write('HTTP/1.1 404 Not Found' + os.EOL);
+        socket.write('content-type: text/html; charset=utf-8' + os.EOL);
+        socket.write(os.EOL);
+        socket.write(`<h1>${fileName}을 찾을 수 없습니다.</h1>`);
+        // socket.end();
+      } else {
+        socket.write('HTTP/1.1 200 OK' + os.EOL);
+        socket.write('content-type: text/html; charset=utf-8' + os.EOL);
+        socket.write(os.EOL);
+        socket.write(data);
+        // socket.end();
+      }
+      socket.end();
+    })
   })
 })
 server.listen(3500, () => console.log(`server started on port 3500`));
