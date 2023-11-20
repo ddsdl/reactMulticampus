@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
 
   const parseURL = url.parse(req.url, true);
   // console.log(parseURL);
-  const fileName = path.join(__dirname, parseURL.pathname);
+  const fileName = path.join(__dirname, '/public', parseURL.pathname);
 
   const logFile = fs.createWriteStream(path.join(__dirname, 'chat.log'), { flags: 'a' });
 
