@@ -1,18 +1,8 @@
-const path = require('path');
 const url = require('url');
-const fs = require('fs');
-
-// 동적 파일 위치
-const views = path.join(__dirname, '..', 'views');
 
 const login = (req, res, next) => {
-  // const query = url.parse(req.url, true).query;      // GET 주소줄
-
-  // body-parser가 post로 넘어오는 값을 res 객체에 body라는 속성을 만들고 여기에 대입
   const body = req.body;                                // POST
-  // console.log(body);
 
-  // session
   req.session.username = body.username;
 
   if (body.username && body.username.trim() !== '') {
@@ -23,12 +13,6 @@ const login = (req, res, next) => {
   res.end();
 }
 const logout = (req, res, next) => {
-  // 혹시 query에 username이 남아 있으면 지우고 / 로 이동
-  // const query = url.parse(req.url, true).query;
-
-  // const body = req.body;
-  // if (body.username && body.username.trim() !== '') body.username = '';
-
   req.session.destroy();    // 세션에 있는 모든 값 삭제
 
   res.writeHead(303, { Location: '/' });
@@ -36,23 +20,13 @@ const logout = (req, res, next) => {
 }
 
 const chat = (req, res, next) => {
-  // const { username } = url.parse(req.url, true).query;
   const username = req.session.username;
 
   if (!username) {
     res.writeHead(303, { Location: '/' });
     res.end();
   } else {
-    const fileName = path.join(views, 'chat.html');
-    fs.readFile(fileName, (err, data) => {
-      if (err) {
-        next();
-      } else {
-        res.writeHead(200, { 'content-type': 'text/html;charset=UTF-8' });
-        data = data.toString().replace('<%=username%>', decodeURIComponent(username));
-        res.end(data);
-      }
-    });
+    res.render('chat', { title: '채팅 페이지', username: username });
   }
 }
 

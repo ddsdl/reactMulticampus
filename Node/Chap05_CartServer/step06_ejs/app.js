@@ -1,12 +1,13 @@
 const path = require('path');
 const fs = require('fs');
 
-// npm i serve-static morgan body-parser express-session nocache
+// npm i ejs
 const static = require('serve-static');     // 정적 서버 모듈
 const logger = require('morgan');           // log 기술 모듈
 const bodyParser = require('body-parser');  // form에서 post로 전달되는 값을 parsing 해 주는 모듈
 const session = require('express-session');
 const nocache = require('nocache');
+const ejs = require('ejs');
 
 const connect = require('connect');
 
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));  // POST로 넘어는 값�
 // session
 // req.session
 app.use(session({
-  cookie: { maxAge: 1000 * 60 * 60 * 2 },    // 2시간. 세션이 유지되는 시간
+  cookie: { maxAge: 1000 * 60 * 60 * 2 },   // 2시간. 세션이 유지되는 시간
   secret: 'someText',
   rolling: true,                            // 페이지 이동시에 시간을 갱신 할 것인가,
   resave: false,                            // 페이지 이동시에 session 값을 갱신 할 것인가?
@@ -45,22 +46,25 @@ app.use((req, res, next) => {
   next(error)
 });
 
+// ejs로 변경
 app.use((error, req, res, next) => {
   console.log('----------- END -----------');
-  const errorFile = path.join(__dirname, 'views', 'error.html');
-  fs.readFile(errorFile, (err, data) => {
+  const errorFile = path.join(__dirname, 'views', 'error.ejs');
+
+  ejs.renderFile(errorFile, {
+    title: 'Error Page',
+    message: error.message,
+    status: error.status,
+    stack: error.stack,
+  }, (err, data) => {
     if (err) {
       res.writeHead(404, { 'content-type': 'text/html;charset=UTF-8' });
       res.end(`<h1>${req.url} ERROR 파일을 찾을 수 없습니다.</h1>`);
     } else {
       res.writeHead(404, { 'content-type': 'text/html;charset=UTF-8' });
-      data = data.toString()
-        .replace('<%=message%>', error.message)
-        .replace('<%=status%>', error.status);
-      data = data.replace('<%=stack%>', error.stack);
       res.end(data);
     }
   })
+});
 
-})
 module.exports = app;
