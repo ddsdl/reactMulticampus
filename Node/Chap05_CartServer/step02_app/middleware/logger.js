@@ -1,12 +1,12 @@
 const fs = require('fs');
-const path = require('path');
 const os = require('os');
 
 const logger = (options) => {
   let logFile = '';
 
   if (options && options.target === 'file') {
-    logFile = fs.createWriteStream(path.join(__dirname, 'chat.log'), { flags: 'a' });
+    const fileName = `${options.dirName}/chat.log`;
+    logFile = fs.createWriteStream(fileName, { flags: 'a' });
   }
 
   return (req, res) => {
