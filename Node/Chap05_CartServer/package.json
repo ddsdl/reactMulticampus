@@ -5,14 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon step03_connect/bin/www"
+    "start": "nodemon step05_module/bin/www"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "connect": "^3.7.0",
     "dotenv": "^16.3.1",
-    "mime": "^3.0.0"
+    "mime": "^3.0.0",
+    "morgan": "^1.10.0",
+    "serve-static": "^1.15.0"
   }
 }
