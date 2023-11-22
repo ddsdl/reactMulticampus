@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title><%=title %></title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="shortcut icon" href="/images/favicon.ico">
+</head>
+<body class="well">
+	<h1>에러 메세지: <%=message%></h1>
+	<h2>응답 상태코드: <%=error.status%></h2>
+	<pre>에러 내역: <%= error.stack %></pre>
+</body>
+</html>

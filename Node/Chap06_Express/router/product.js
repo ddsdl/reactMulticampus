@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const router = express.Router();
 
+// /prod/
 router.get('/', (req, res, next) => {
   const dom = `<html>
     <head><title>Product</title></head>
@@ -16,6 +17,7 @@ router.get('/', (req, res, next) => {
   res.send(dom);
 });
 
+// /prod/tv
 router.get('/tv', (req, res, next) => {
   const fileName = path.join(__dirname, '..', 'public', 'product', 'tv.html');
   fs.readFile(fileName, (err, data) => {

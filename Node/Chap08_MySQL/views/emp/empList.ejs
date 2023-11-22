@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <title><%= title%></title>
+</head>
+<body>
+  <div class="container mt-3">
+    <div class="row">
+      <h1 class="col-sm-6"><%= title%></h1>
+      <div class="col-sm-6 text-end">
+        <a href="/">INDEX</a>
+      </div>
+      <table class="table col-sm-12">
+        <thead>
+          <tr>
+            <th>사원번호</th>
+            <th>사원이름</th>
+            <th>이메일</th>
+            <th>입사일</th>
+            <th>급여</th>
+            <th>부서명</th>
+          </tr>
+        </thead>
+        <tbody>
+<%
+  <!-- ejs의 기본 구문을 기술한다 -->
+  resp.data.forEach( emp => {
+%>
+          <tr>
+            <td><%= emp.empId%></td>
+            <td><a href="/emp/emp/<%= emp.empId%>"><%= emp.name%></a></td>
+            <td><%= emp.email%></td>
+            <td><%= moment(emp.hire).format('YYYY-MM-DD')%></td>
+            <td><%= emp.salary%></td>
+            <td><%= emp.deptName%></td>
+          </tr>
+<%
+  });
+%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
