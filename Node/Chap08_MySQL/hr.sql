@@ -49,3 +49,22 @@ SELECT * FROM emp WHERE empId = 200;
 
 -- emp 삭제
 DELETE FROM emp WHERE empId = 200;
+
+-- emp 추가
+DESC emp;
+
+ALTER TABLE emp
+  MODIFY COLUMN hire DATETIME DEFAULT NOW();
+
+-- 입력
+INSERT INTO emp(empId, name, email, salary, deptId)
+  VALUES(300, '홍길동', 'hong@company.com', 5000, 270);
+
+-- 수정
+UPDATE emp SET name='놀부', email='nol@company.com', salary=3500, deptId=260
+  WHERE empId = 303;
+
+SELECT * FROM dept;
+
+SELECT * FROM emp
+  ORDER BY `empId` DESC;

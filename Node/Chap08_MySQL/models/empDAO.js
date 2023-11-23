@@ -25,9 +25,13 @@ const sql = {
   empList: `SELECT e.*, d.deptName
             FROM emp e INNER JOIN dept d ON e.deptId = d.deptId
             ORDER BY e.empId DESC
-            LIMIT 1, 10`,
+            LIMIT 0, 10`,
   emp: `SELECT * FROM emp WHERE empId = ?`,
-  deleteEmp: `DELETE FROM emp WHERE empId = ?`
+  deleteEmp: `DELETE FROM emp WHERE empId = ?`,
+  insertEmp: `INSERT INTO emp(empId, name, email, salary, deptId)
+              VALUES(?, ?, ?, ?, ?)`,
+  updateEmp: `UPDATE emp SET name = ?, email = ?, salary = ?, deptId = ?
+              WHERE empId = ?`,
 }
 
 const empDAO = {
@@ -56,11 +60,33 @@ const empDAO = {
       if (conn) await conn.release();         // 사용한 연결 반환
     }
   },
-  insertEmp: () => {
+  insertEmp: async (item, callback) => {
+    const { empId, name, email, salary, deptId } = item;
 
+    const conn = await pool.getConnection();  // 10개중 사용하지 않는 연결을 취득
+    try {
+      const [data] = await conn.query(sql.insertEmp, [empId, name, email, salary, deptId]);
+      console.log('INSERT=> ', data)
+      callback({ status: 200, message: 'OK', data: data });
+    } catch (error) {
+      callback({ status: 500, message: '사원 추가에 실패하였습니다', error });
+    } finally {
+      if (conn) await conn.release();         // 사용한 연결 반환
+    }
   },
-  updateEmp: () => {
+  updateEmp: async (item, callback) => {
+    const { empId, name, email, salary, deptId } = item;
 
+    const conn = await pool.getConnection();  // 10개중 사용하지 않는 연결을 취득
+    try {
+      const [data] = await conn.query(sql.updateEmp, [name, email, salary, deptId, empId]);
+      console.log('UPDATE=> ', data)
+      callback({ status: 200, message: 'OK', data: data });
+    } catch (error) {
+      callback({ status: 500, message: '사원 수정에 실패하였습니다', error });
+    } finally {
+      if (conn) await conn.release();         // 사용한 연결 반환
+    }
   },
   deleteEmp: async (empId, callback) => {
     const conn = await pool.getConnection();  // 10개중 사용하지 않는 연결을 취득

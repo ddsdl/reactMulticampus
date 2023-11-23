@@ -10,6 +10,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const empRouter = require('./routes/emp');
+const empJSONRouter = require('./routes/empJSON');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(nocache());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/emp', empRouter);
+app.use('/empJSON', empJSONRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

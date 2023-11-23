@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./../layout/head.ejs') %>
+<body>
+  <div class="container mt-3">
+    <div class="row">
+      <h1 class="col-sm-6"><%= title%></h1>
+      <div class="col-sm-6 text-end">
+        <a href="/">INDEX</a> | 
+        <a href="/emp/empList">EMP LIST</a> | 
+      </div>
+
+      <form method="POST" action="/emp/insertEmp">
+        <div class="row">
+          <div class="form-group mb-3 col-sm-10">
+            <label for="empId" class="form-label">ID</label>
+            <input type="text" id="empId" name="empId" class="form-control">
+          </div>
+          <div class="col-sm-2" style="margin-top: 35px;">
+            <button type="button" name="idCheck" class="btn btn-warning btn-sm">아이디 중복 체크</button>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">NAME</label>
+          <input type="text" id="name" name="name" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">E-MAIL</label>
+          <input type="text" id="email" name="email" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+          <label for="salary" class="form-label">급료</label>
+          <input type="text" id="salary" name="salary" class="form-control">
+        </div>
+        <div class="form-group mb-3">
+          <label for="deptId" class="form-label">부서번호</label>
+          <input type="text" id="deptId" name="deptId" class="form-control">
+        </div>
+
+        <div class="form-group mb-3">
+          <button class="btn btn-primary btn-sm" type="submit" id="insert">입력</button>
+          <button class="btn btn-danger btn-sm" type="reset" id="cancel">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+  </script>
+</body>
+</html>

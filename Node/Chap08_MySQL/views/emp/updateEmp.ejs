@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./../layout/head.ejs') %>
+<body>
+  <div class="container mt-3">
+    <div class="row">
+      <h1 class="col-sm-6"><%= title%></h1>
+      <div class="col-sm-6 text-end">
+        <a href="/">INDEX</a> | 
+        <a href="/emp/empList">EMP LIST</a> | 
+      </div>
+
+      <form method="POST" action="/emp/updateEmp">
+        <!-- 폼 요소는 화면에 표시되지 않음. 하지만 지정한 페이지에 name 이름으로 value 값은 전송된다
+        보통 사용자 모르게 어떤 값을 form을 이용해서 전달하고자 하는 경우 사용 -->
+        <input type="hidden" name="empId" value="<%=resp.data.empId %>">
+
+        <div class="form-group mb-3">
+          <label for="empId" class="form-label">ID</label>
+          <!-- name 속성이 없어서 화면 표시 역할만 한다. 어자피 disabled이라 전송 안됨 따라서 name 속성이 있어도 상관없음  -->
+          <input type="text" id="empId" class="form-control" disabled value="<%=resp.data.empId %>">
+        </div>
+        <div class="form-group mb-3">
+          <label for="name" class="form-label">NAME</label>
+          <input type="text" id="name" name="name" class="form-control" value="<%=resp.data.name %>">
+        </div>
+        <div class="form-group mb-3">
+          <label for="email" class="form-label">E-MAIL</label>
+          <input type="text" id="email" name="email" class="form-control" value="<%=resp.data.email %>">
+        </div>
+        <div class="form-group mb-3">
+          <label for="hire" class="form-label">입사일 - readonly 값은 서버에 전송된다</label>
+          <input type="text" id="hire" name="hire" class="form-control" readonly 
+            value="<%= moment(resp.data.hire).format('YYYY-MM-DD HH:mm:ss') %>">
+        </div>
+        <div class="form-group mb-3">
+          <label for="salary" class="form-label">급료</label>
+          <input type="text" id="salary" name="salary" class="form-control" value="<%=resp.data.salary %>">
+        </div>
+        <div class="form-group mb-3">
+          <label for="deptId" class="form-label">부서번호</label>
+          <input type="text" id="deptId" name="deptId" class="form-control" value="<%=resp.data.deptId %>">
+        </div>
+
+        <div class="form-group mb-3">
+          <button class="btn btn-primary btn-sm" type="submit" id="update">수정</button>
+          <button class="btn btn-danger btn-sm" type="reset" id="delete">초기화</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+  </script>
+</body>
+</html>
