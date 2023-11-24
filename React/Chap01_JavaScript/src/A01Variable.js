@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 // 변수.
 let address = 'Seoul';
 console.log(`Address: ${address}, typeof: ${typeof address}`);
@@ -23,7 +24,7 @@ console.log(`for i => ${i}, j=> ${j}`);
 console.log('');
 
 for (let k = 0; k < 3; k++) {
-  let m = 100;
+  const m = 100;
   console.log(k, m);
 }
 // console.log(`for k => ${k}, m=> ${m}`);

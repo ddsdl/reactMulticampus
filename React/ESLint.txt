@@ -216,7 +216,7 @@ Webpack 설정
       어떤 솔루션을 사용할 것인가?                                          [ ES6 ]
 
     2. Do you want to use webpack-dev-server? (Y/n)
-      개발 서버를 사용할 것인가? (live-server와 같은 환경을 구축해 줄까)          [ Y ]
+      개발 서버를 사용할 것인가? ( 환경을 구축해 줄까)          [ Y ]
 
     3. Do you want to simplify the creation of HTML files for your bundle? (Y/n)
       간단한 번들용 HTML 파일을 생성할 것인가?                                [ Y ]

@@ -1,6 +1,6 @@
 React 설치
 
-  1. 확인
+  1. 확인 (CRA)
     npm info create-react-app
 
   2. 설치

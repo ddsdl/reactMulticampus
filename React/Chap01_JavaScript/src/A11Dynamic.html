@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Import</title>
+</head>
+<body>
+  <h1>Dynamic Import</h1>
+
+  <div id="root"></div>
+
+  <script type="text/javascript">
+    const getModule = async () => {
+      // const one = await import('./A11ExportOne.js');
+      // const two = await import('./A11ExportTwo.js');
+      // console.log(two);
+
+      const {name, age, address, arr, user, onAdd} = await import('./A11ExportOne.js');
+      const {default: {name: getName, total, getAvg}, x, y} = await import('./A11ExportTwo.js');
+      console.log(getName);
+
+      const dom = `
+          <div>
+            Name: ${name}<br>
+            Age: ${age}<br>
+            GetName: ${getName()}<br>
+          </div>
+        `;
+        document.querySelector('#root').innerHTML = dom;
+    }
+    getModule();
+
+    /*
+    import('./A11ExportOne.js')
+      .then((resp) => {
+        // console.log(resp);
+        const dom = `
+          <div>
+            Name: ${resp.name}<br>
+            Age: ${resp.age}
+          </div>
+        `;
+        document.querySelector('#root').innerHTML = dom;
+      })
+      .catch((error) => console.error(error.message))
+    */
+  </script>
+</body>
+</html>
