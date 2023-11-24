@@ -95,7 +95,6 @@ function App() {
 
   // 상태 변수 => 이 상태 변수 값이 변경되면 리엑트는 변경된 값을 감지하고 화면을 리 렌더링해서
   // 변경된 값으로 화면을 갱신한다
-
   // const [getter, setter]
   const [count, setCount] = useState(0);
 
