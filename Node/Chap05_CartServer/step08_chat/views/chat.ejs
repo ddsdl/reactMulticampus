@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<title><%= title%></title>
-<meta charset="utf-8">
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="shortcut icon" href="/img/favicon.ico">
-</head>
-<body class="well">
-	<h1><%= title%></h1>
 
-	<div class="form-group">	  		
-		<textarea id="panel" rows="20" cols="70"  class="form-control" disabled></textarea>
+<head>
+	<title>
+		<%= title%>
+	</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+
+<body class="well">
+	<h1>
+		<%= title%>
+	</h1>
+
+	<div class="form-group">
+		<textarea id="panel" rows="20" cols="70" class="form-control" disabled></textarea>
 	</div>
 
 	<div class="form-inline">
-		<output><%=username%></output>
+		<output>
+			<%=username%>
+		</output>
 		<input class="form-control" type="text" name="msg" size="80" autofocus>
 		<button type="button" name="sendBtn" class="btn btn-success">메세지 전송</button>
 		<button class="btn btn-danger" id="logout">로그아웃</button>
@@ -32,15 +40,13 @@
 		const panel = document.querySelector('#panel')
 		ws.on('toClient', (data) => {
 			//css 등으로 색상 다르게, 정렬 오른쪽으로 
-			if(data.me === '<%=username%>') { }
-			console.log(data)
 			panel.value = panel.value + data.msg + '\n';
 			panel.scrollTop = panel.scrollHeight;
 		});
 
 		const msgElem = document.querySelector('input[name="msg"]');
 		const sendData = () => {
-			ws.emit('toServer', {msg: msgElem.value, me: '<%=username%>'});
+			ws.emit('toServer', msgElem.value);
 			msgElem.value = '';
 			msgElem.focus();
 		}
@@ -53,4 +59,5 @@
 		})
 	</script>
 </body>
+
 </html>

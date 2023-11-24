@@ -9,7 +9,7 @@ const chatServer = (io) => {
 
     socket.on('toServer', (data) => {
       console.log(data)
-      io.emit('toClient', { msg: `${socket.nickname}: ${data.msg}`, me: data.me });
+      io.emit('toClient', `${socket.nickname}: ${data.msg}`);
     });
 
     socket.on('logout', () => {
