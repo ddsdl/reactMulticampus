@@ -1,5 +1,5 @@
 {
-  "name": "chap02",
+  "name": "chap03_component",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,8 +22,7 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "rules": {}
+    ]
   },
   "browserslist": {
     "production": [

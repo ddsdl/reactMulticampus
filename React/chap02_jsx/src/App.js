@@ -83,6 +83,10 @@ export default Abc;
 
 // 이렇게 만들어진 View 조각을 컴포넌트(Component)라 한다
 import { useState } from "react";
+import A01Class from './components/A01Class'
+import A02Func from './components/A02Func'
+import A03Fragment from './components/A03Fragment'
+import A04Library from './components/A04Library'
 
 function App() {
 
@@ -104,6 +108,16 @@ function App() {
 
   return (
     <div className="m-3">
+
+      <A04Library></A04Library>
+
+      <A03Fragment></A03Fragment>
+
+      <A02Func></A02Func>
+
+      {/* 사용자 정의 컴퍼넌트에 기술한 class는 무시된다 */}
+      <A01Class className="mb-3"></A01Class>
+
       {/* JSX 내부에서의 주석 */}
       <h1>Chap02 JSX</h1>
 
@@ -124,6 +138,8 @@ function App() {
         <button onClick={increase}>+</button>
         <button onClick={decrease}>-</button>
       </div>
+
+      <img src="images/tree.jpg" alt="나무 이미지" />
     </div>
   );
 }
