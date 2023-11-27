@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import A01ClassState from './components/A01ClassState'
 import A02ClassProps from './components/A02ClassProps'
+import A02Children from './components/A02Children'
 
 function App() {
   // 일반 변수
@@ -19,11 +20,20 @@ function App() {
     <div className="m-3">
       <div className="display-5 mb-3">Chap03 Component</div>
 
+      <A02Children></A02Children>
+
       {/* App가 A02ClassProps 컴퍼넌트의 부모 컴퍼넌트(컨테이너)가 된다. 값 전달은 속성으로 전달
         부모 컴포넌트가 리 렌더링되면 자식 컴포넌트로 리 렌더링된다. => 값 다시 전달 => 바뀐 값으로 화면 갱신
       */}
       <A02ClassProps name="홍길동" age={30} num={num} add={address} arr={arr} user={user}
-        onAdd={onAdd} changeNum={changeNum} changeAddress={changeAddress}></A02ClassProps>
+        onAdd={onAdd} changeNum={changeNum} changeAddress={changeAddress}>
+        <div>이 요소를 자식 요소에서 출력하도록 전달 - Good Morning</div>
+      </A02ClassProps>
+
+      <A02ClassProps name="홍길동" age={30} num={num} add={address} arr={arr} user={user}
+        onAdd={onAdd} changeNum={changeNum} changeAddress={changeAddress}>
+        <h3>이 요소를 자식 요소에서 출력하도록 전달 - Hello World</h3>
+      </A02ClassProps>
 
       <A01ClassState></A01ClassState>
     </div>

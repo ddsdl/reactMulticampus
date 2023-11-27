@@ -43,6 +43,9 @@ export class A02ClassProps extends Component {
 
         <A02ChildOne name={this.props.name} age={this.props.age} add={this.props.add}></A02ChildOne>
         <A02ChildTwo {...this.props}></A02ChildTwo>
+
+        {/* 상위 컴퍼넌트에서 전달한 태그 사이의 View를 표시 할 영역 */}
+        {this.props.children}
       </div>
     )
   }

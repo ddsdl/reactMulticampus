@@ -35,6 +35,7 @@ class A01ClassState extends Component {
   changeName = () => this.name = '흥부';    // 변수의 값은 변경됨 -> 리 렌더링 안함 -> 화면 그대로
 
   // state 변수 변경 => 반드시 내장 메서드 this.setState({key: value}) 를 이용한다
+  // this.setState({ ...this.state, num: this.state.num + 1 });
   changeNum = () => this.setState({ num: this.state.num + 1 });
   changeAddress = () => this.setState({ address: 'Busan' });
   changeCheck = () => this.setState({ isChecked: !this.state.isChecked });
