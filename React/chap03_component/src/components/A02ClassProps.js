@@ -6,6 +6,10 @@ import A02ChildOne from './A02Props/A02ChildOne'
 import A02ChildTwo from './A02Props/A02ChildTwo'
 
 export class A02ClassProps extends Component {
+  componentDidMount() {
+    // console.log(this.props);
+  }
+
   render() {
     return (
       <div className="mb-5">
