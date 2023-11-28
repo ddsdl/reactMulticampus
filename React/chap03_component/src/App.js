@@ -5,6 +5,9 @@ import A02Children from './components/A02Children'
 import A02LifeCycle from './components/A02LifeCycle'
 import A03FuncState from './components/A03FuncState'
 import A04FuncProps from './components/A04FuncProps'
+import A05FuncEvent from './components/A05FuncEvent'
+import A06CreateDOM from './components/A06CreateDOM'
+
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -28,6 +31,10 @@ function App() {
       {/* <div className="display-5 mb-3">Chap03 Component</div> */}
       {/* <Header></Header> */}
       {Header()}
+
+      <A06CreateDOM></A06CreateDOM>
+
+      <A05FuncEvent></A05FuncEvent>
 
       <A04FuncProps name="홍길동" age={30} num={num} add={address} arr={arr} user={user}
         onAdd={onAdd} changeNum={changeNum} changeAddress={changeAddress}>

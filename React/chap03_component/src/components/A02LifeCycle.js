@@ -22,7 +22,7 @@ export class A02LifeCycle extends Component {
   // View가 완성되었을때 실행할 메서드
   componentDidMount() {
     // console.log('4. componentDidMount');
-    document.querySelector('input[name="name"]').style.background = 'orange';
+    document.querySelector('input[name="abc"]').style.background = 'orange';
     this.inputRef.current.style.background = 'orange';
   }
 
@@ -50,7 +50,7 @@ export class A02LifeCycle extends Component {
 
         {this.state.name}<br />
 
-        <input type="text" className="form-control" name="name" />
+        <input type="text" className="form-control" name="abc" />
         <input type="text" className="form-control" ref={this.inputRef} />
 
         <button onClick={this.changeNolbu}>nolbu</button>
