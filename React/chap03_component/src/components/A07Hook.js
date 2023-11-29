@@ -15,7 +15,7 @@ function A07Hook() {
   // 1. 값 유지 => 값이 변경되도 화면 리 렌더링 하지 않음
   // 2. JSX 요소와 연결 => document.querySelector(요소지정) 과 동일한 역할
   // 값은 항상 변수명.current로 첨조한다
-  const cnt = useRef(1)
+  const cnt = useRef(1);
   const numRef = useRef(null);
 
   // Event Handler도 리 렌더링 될때마다 새롭게 생성된다.
@@ -60,7 +60,7 @@ function A07Hook() {
 
   // 일반 함수
   const getAverage = (arr) => {
-    console.log('계산중...');
+    // console.log('계산중...');
     if (arr.length === 0) return 0;
 
     const total = arr.reduce((sum, item) => sum + item, 0);

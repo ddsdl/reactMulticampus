@@ -8,7 +8,7 @@ import A04FuncProps from './components/A04FuncProps'
 import A05FuncEvent from './components/A05FuncEvent'
 import A06CreateDOM from './components/A06CreateDOM'
 import A07Hook from './components/A07Hook'
-
+import A08Hook from './components/A08Hook'
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -32,6 +32,8 @@ function App() {
       {/* <div className="display-5 mb-3">Chap03 Component</div> */}
       {/* <Header></Header> */}
       {Header()}
+
+      <A08Hook></A08Hook>
 
       <A07Hook></A07Hook>
 
