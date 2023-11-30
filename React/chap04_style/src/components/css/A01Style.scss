@@ -1,0 +1,14 @@
+.scssTitle {
+    background-color: aqua;
+    color: black;
+    font-size: 24pt;
+    font-weight: bold;
+    padding: 20px;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}
+// 확장자가 .scss 또는 .sass 가 붙은 파일은 바로 사용 불가
+// npm i sass   => 1.XX

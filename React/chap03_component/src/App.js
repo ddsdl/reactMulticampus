@@ -15,6 +15,7 @@ import B03TodoList from './components/B03TodoList'
 import B04TodoList from './components/B04TodoList'
 import A09HigherOrder from './components/A09HigherOrder'
 import A09HigherTwo from './components/A09HigherTwo'
+import A10Immer from './components/A10Immer'
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -38,6 +39,8 @@ function App() {
       {/* <div className="display-5 mb-3">Chap03 Component</div> */}
       {/* <Header></Header> */}
       {Header()}
+
+      <A10Immer></A10Immer>
 
       <A09HigherTwo name="방자"></A09HigherTwo>
       <A09HigherOrder name="홍길동"></A09HigherOrder>

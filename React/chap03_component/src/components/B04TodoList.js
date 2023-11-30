@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react'
+import { produce } from 'immer'
 
 function B04TodoList() {
   const [data, setData] = useState({
@@ -13,19 +14,35 @@ function B04TodoList() {
   })
 
   const deleteTodo = useCallback((id) => {
+    /*
     setData((data) => {
       const todos = data.todoList.filter((todo) => (todo.id === id) ? false : true);
       return { ...data, todoList: todos };
     });
+    */
+    setData((data) => {
+      const index = data.todoList.findIndex((todo) => todo.id === id);
+      return produce(data, draft => {
+        delete draft.todoList.splice(index, 1)
+      });
+    });
   }, []);
 
   const updateTodo = useCallback((id) => {
+    /*
     setData((data) => {
       const todos = data.todoList.map((todo) => {
         return (todo.id === id) ? { ...todo, done: !todo.done } : todo;
       });
       return { ...data, todoList: todos };
-    })
+    });
+    */
+    setData((data) => {
+      const index = data.todoList.findIndex((todo) => todo.id === id);
+      return produce(data, draft => {
+        draft.todoList[index].done = !draft.todoList[index].done;
+      });
+    });
   }, []);
 
   const cnt = useRef(6);
@@ -35,14 +52,29 @@ function B04TodoList() {
     evt.preventDefault();
     const todo = { id: cnt.current++, text: txt, done: false };
 
-    setData((data) => ({ ...data, todoList: data.todoList.concat(todo) }));
+    setData((data) => {
+      return produce(data, draft => {
+        // 한 줄로 기술하면 이 구문의 값을 리턴 값으로 취급해서 에러 발생
+        draft.todoList.push(todo);
+      })
+    });
     setData((data) => ({ ...data, txt: '' }));
+    /*
+    setData((data) => ({ ...data, todoList: data.todoList.concat(todo) }));
+    */
 
     txtRef.current.focus();
   }, []);
 
   const changeTxt = useCallback((evt) => {
+    /*
     setData((data) => ({ ...data, txt: evt.target.value }));
+    */
+    setData((data) => {
+      return produce(data, draft => {
+        draft.txt = evt.target.value;
+      })
+    })
   }, []);
 
   return (
