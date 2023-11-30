@@ -9,6 +9,10 @@ import A05FuncEvent from './components/A05FuncEvent'
 import A06CreateDOM from './components/A06CreateDOM'
 import A07Hook from './components/A07Hook'
 import A08Hook from './components/A08Hook'
+import B01Currency from './components/B01Currency'
+import B02Currency from './components/B02Currency'
+
+// import B03TodoList from './components/B03TodoList'
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -32,6 +36,11 @@ function App() {
       {/* <div className="display-5 mb-3">Chap03 Component</div> */}
       {/* <Header></Header> */}
       {Header()}
+
+
+
+      <B02Currency></B02Currency>
+      <B01Currency></B01Currency>
 
       <A08Hook></A08Hook>
 
