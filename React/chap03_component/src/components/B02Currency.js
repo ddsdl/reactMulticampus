@@ -1,16 +1,31 @@
 // B01Currency.js
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-
+import React, { useCallback, useEffect, useReducer, useRef } from 'react'
+import { countries, rate, currencyReducer } from './../service/currency'
+/*
 const countries = ['USD', 'EUR', 'KRW'];
 const rate = { USD: 1, EUR: 1.25, KRW: 0.00078 };
+const currencyReducer = (state, action) => {
+  switch (action.type) {
+    case 'CHANGE_NUMBER':
+      let value = Number(action.payload.value);
+      if (isNaN(value)) value = '';
+      return { ...state, [action.payload.name]: value };
+    case 'CHANGE_CURRENCY':
+      return { ...state, inCurr: action.payload };
+    default:
+      return state;
+  }
+}
+*/
 
-function B02Currency() {
+function B01Currency() {
 
-  const [data, setData] = useState({
+  const [data, dispatch] = useReducer(currencyReducer, {
     qty: 3,
     cost: 5,
     inCurr: 'USD'
-  });
+  })
+
   const qtyRef = useRef(null);
 
   useEffect(() => {
@@ -18,12 +33,10 @@ function B02Currency() {
   }, []);
 
   const changeNumber = useCallback((evt) => {
-    setData((prevData) => {
-      return { ...prevData, [evt.target.name]: evt.target.value }
-    })
+    dispatch({ type: 'CHANGE_NUMBER', payload: evt.target });
   }, []);
   const changeCurrency = useCallback((evt) => {
-    setData((prevData) => ({ ...prevData, inCurr: evt.target.value }));
+    dispatch({ type: 'CHANGE_CURRENCY', payload: evt.target.value });
   }, []);
 
   const getTotal = () => {
@@ -34,10 +47,9 @@ function B02Currency() {
     return total;
   }
 
-
   return (
     <div className='mb-5'>
-      <h3>B02Currency</h3>
+      <h3>B01Currency</h3>
 
       <form>
         <div className="form-group mb-3">
@@ -67,4 +79,4 @@ function B02Currency() {
   )
 }
 
-export default B02Currency
+export default B01Currency

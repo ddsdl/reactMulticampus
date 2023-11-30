@@ -11,8 +11,8 @@ import A07Hook from './components/A07Hook'
 import A08Hook from './components/A08Hook'
 import B01Currency from './components/B01Currency'
 import B02Currency from './components/B02Currency'
-
-// import B03TodoList from './components/B03TodoList'
+import B03TodoList from './components/B03TodoList'
+import B04TodoList from './components/B04TodoList'
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -37,7 +37,8 @@ function App() {
       {/* <Header></Header> */}
       {Header()}
 
-
+      <B04TodoList></B04TodoList>
+      <B03TodoList></B03TodoList>
 
       <B02Currency></B02Currency>
       <B01Currency></B01Currency>

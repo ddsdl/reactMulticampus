@@ -1,59 +1,59 @@
 import React, { useCallback, useRef, useState } from 'react'
 
-function B03TodoList() {
-  const [todoList, setTodoList] = useState([
-    { id: 1, text: '첫번째 할 일', done: true },
-    { id: 2, text: '두번째 할 일', done: false },
-    { id: 3, text: '세번째 할 일', done: true },
-    { id: 4, text: '네번째 할 일', done: false },
-    { id: 5, text: '다섯번째 할 일', done: true },
-  ]);
-  const [txt, setTxt] = useState('');
+function B04TodoList() {
+  const [data, setData] = useState({
+    todoList: [
+      { id: 1, text: '첫번째 할 일', done: true },
+      { id: 2, text: '두번째 할 일', done: false },
+      { id: 3, text: '세번째 할 일', done: true },
+      { id: 4, text: '네번째 할 일', done: false },
+      { id: 5, text: '다섯번째 할 일', done: true },
+    ],
+    txt: '',
+  })
 
   const deleteTodo = useCallback((id) => {
-    setTodoList((todoList) => {
-      const todos = todoList.filter((todo) => {
-        if (todo.id === id) return false;
-        else return true;
-      });
-      return todos;
+    setData((data) => {
+      const todos = data.todoList.filter((todo) => (todo.id === id) ? false : true);
+      return { ...data, todoList: todos };
     });
   }, []);
 
   const updateTodo = useCallback((id) => {
-    setTodoList((todoList) => {
-      const todos = todoList.map((todo) => {
-        if (todo.id === id) return { ...todo, done: !todo.done };
-        else return todo;
+    setData((data) => {
+      const todos = data.todoList.map((todo) => {
+        return (todo.id === id) ? { ...todo, done: !todo.done } : todo;
       });
-      return todos;
+      return { ...data, todoList: todos };
     })
   }, []);
 
   const cnt = useRef(6);
   const txtRef = useRef(null);
 
-  const addTodo = (evt, txt) => {
+  const addTodo = useCallback((evt, txt) => {
     evt.preventDefault();
     const todo = { id: cnt.current++, text: txt, done: false };
-    setTodoList(todoList.concat(todo));
-    setTxt('');
-    // document.querySelector('[name="txt"]').focus();
+
+    setData((data) => ({ ...data, todoList: data.todoList.concat(todo) }));
+    setData((data) => ({ ...data, txt: '' }));
+
     txtRef.current.focus();
-  }
+  }, []);
+
   const changeTxt = useCallback((evt) => {
-    setTxt(evt.target.value);
+    setData((data) => ({ ...data, txt: evt.target.value }));
   }, []);
 
   return (
     <div className="mb-5">
-      <h3>B02TodoList</h3>
+      <h3>B04TodoList</h3>
 
       <form className="mb-3">
         <div className="input-group mb-3">
           <input type="text" name="txt" className="form-control" ref={txtRef}
-            value={txt} onChange={changeTxt} />
-          <button type="submit" className="btn btn-warning" onClick={(evt) => addTodo(evt, txt)}>SEND</button>
+            value={data.txt} onChange={changeTxt} />
+          <button type="submit" className="btn btn-warning" onClick={(evt) => addTodo(evt, data.txt)}>SEND</button>
         </div>
       </form>
 
@@ -67,7 +67,7 @@ function B03TodoList() {
           </tr>
         </thead>
         <tbody>
-          {todoList.map((todo) => (
+          {data.todoList.map((todo) => (
             <tr key={todo.id}>
               <td>{todo.id}</td>
               <td>{todo.text}</td>
@@ -82,4 +82,4 @@ function B03TodoList() {
   )
 }
 
-export default B03TodoList
+export default B04TodoList;
