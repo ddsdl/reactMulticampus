@@ -13,6 +13,8 @@ import B01Currency from './components/B01Currency'
 import B02Currency from './components/B02Currency'
 import B03TodoList from './components/B03TodoList'
 import B04TodoList from './components/B04TodoList'
+import A09HigherOrder from './components/A09HigherOrder'
+import A09HigherTwo from './components/A09HigherTwo'
 
 function Header() {
   return <div className="display-5 mb-3">Chap03 Component</div>
@@ -36,6 +38,9 @@ function App() {
       {/* <div className="display-5 mb-3">Chap03 Component</div> */}
       {/* <Header></Header> */}
       {Header()}
+
+      <A09HigherTwo name="방자"></A09HigherTwo>
+      <A09HigherOrder name="홍길동"></A09HigherOrder>
 
       <B04TodoList></B04TodoList>
       <B03TodoList></B03TodoList>

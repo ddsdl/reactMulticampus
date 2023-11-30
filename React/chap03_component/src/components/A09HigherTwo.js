@@ -1,7 +1,9 @@
+// A09HigherTwo.js
+
 import React, { useCallback } from "react";
 import A09WithFunc from './A09WithFunc'
 
-function A09HigherOrder(props) {
+function A09HigherTwo(props) {
   const { name, age, setAge, display } = props;
 
   const changeAge = useCallback(() => {
@@ -10,7 +12,7 @@ function A09HigherOrder(props) {
 
   return (
     <div className="mb-5">
-      <h3>A09 Higher Order Component</h3>
+      <h3>A09 Higher Order TWO</h3>
       props: {props.name} / {name}<br />
       age: {age}<br />
       <br />
@@ -21,4 +23,4 @@ function A09HigherOrder(props) {
   );
 }
 
-export default A09WithFunc(A09HigherOrder);
+export default A09WithFunc(A09HigherTwo);
