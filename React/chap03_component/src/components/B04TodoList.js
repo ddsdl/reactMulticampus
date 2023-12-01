@@ -102,7 +102,8 @@ function B04TodoList() {
           {data.todoList.map((todo) => (
             <tr key={todo.id}>
               <td>{todo.id}</td>
-              <td>{todo.text}</td>
+              {/* .done { text-decoration: 'underline' } */}
+              <td className={todo.done ? 'done' : undefined}>{todo.text}</td>
               <td><button className="btn btn-primary" onClick={(evt) => updateTodo(todo.id)}>수정</button></td>
               <td><button className="btn btn-danger" onClick={(evt) => deleteTodo(todo.id)}>삭제</button></td>
             </tr>
