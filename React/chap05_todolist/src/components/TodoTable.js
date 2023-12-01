@@ -1,6 +1,10 @@
 import React from 'react'
+import './css/todos.css'
+import TodoItem from './TodoItem'
 
-function TodoTable() {
+function TodoTable(props) {
+  const { todoList, updateTodo, deleteTodo } = props;
+
   return (
     <table className="table">
       <thead>
@@ -12,12 +16,9 @@ function TodoTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td><button className="btn btn-primary">수정</button></td>
-          <td><button className="btn btn-danger">삭제</button></td>
-        </tr>
+        {todoList.map(todo => (
+          <TodoItem key={todo.id} todo={todo} updateTodo={updateTodo} deleteTodo={deleteTodo} />
+        ))}
       </tbody>
     </table>
   )
