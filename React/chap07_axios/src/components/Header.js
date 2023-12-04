@@ -5,10 +5,9 @@ function Header() {
   return (
     <nav className="mb-3">
       <Link to="/">HOME | </Link>
-      <Link to="/A01Axios">HOME | </Link>
+      <Link to="/A01Axios">A01Axios | </Link>
       <Link to="/contactList">LIST | </Link>
-      <Link to="/contact">VIEW | </Link>
-      <Link to="/addContect">ADD | </Link>
+      <Link to="/insert">ADD | </Link>
     </nav>
   )
 }
