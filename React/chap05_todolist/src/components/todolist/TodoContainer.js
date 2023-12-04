@@ -1,11 +1,11 @@
 // TodoContainer.js
 import React, { useState, useRef, useCallback } from 'react'
-import TodoInsert from './TodoInsert'
-import TodoTable from './TodoTable'
+import TodoInsert from 'components/todolist/TodoInsert'
+import TodoTable from 'components/todolist/TodoTable'
 
 const makeTodo = () => {
   const todos = [];
-  for (let i = 1; i <= 5000; i++) {
+  for (let i = 1; i <= 5; i++) {
     todos.push({ id: i, text: `${i}번째 할 일`, done: false });
   }
   return todos;
@@ -51,6 +51,7 @@ function TodoContainer() {
 
   return (
     <>
+      <h3>TodoList</h3>
       <TodoInsert /*txt={txt} changeText={changeText}*/ addTodo={addTodo}></TodoInsert>
       <TodoTable todoList={todoList} updateTodo={updateTodo} deleteTodo={deleteTodo}></TodoTable>
     </>

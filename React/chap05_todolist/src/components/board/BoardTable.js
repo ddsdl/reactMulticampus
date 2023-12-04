@@ -1,6 +1,9 @@
 import React from 'react'
+import BoardItem from './BoardItem';
 
-function BoardTable() {
+function BoardTable(props) {
+  const { boardList, deleteBoard, findItem } = props;
+
   return (
     <table className="table">
       <thead>
@@ -13,13 +16,9 @@ function BoardTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>게시물 1</td>
-          <td>홍길동</td>
-          <td>2013-12-25</td>
-          <td><button className="btn btn-danger btn-sm">DELETE</button></td>
-        </tr>
+        {boardList.map((board) => (
+          <BoardItem key={board.no} board={board} deleteBoard={deleteBoard} findItem={findItem} />
+        ))}
       </tbody>
     </table>
   )

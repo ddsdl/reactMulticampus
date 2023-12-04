@@ -1,6 +1,6 @@
 import React from 'react'
-import './css/todos.css'
-import TodoItem from './TodoItem'
+import 'components/todolist/css/todos.css'
+import TodoItem from 'components/todolist/TodoItem'
 
 function TodoTable(props) {
   const { todoList, updateTodo, deleteTodo } = props;

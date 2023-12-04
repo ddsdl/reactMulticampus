@@ -1,0 +1,10 @@
+.link {
+  color: orange;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+}
+.link:hover {
+  color: lightseagreen;
+}

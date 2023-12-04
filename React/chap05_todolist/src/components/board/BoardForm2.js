@@ -1,13 +1,51 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
+import { produce } from 'immer'
+import moment from 'moment'
 
 function BoardForm(props) {
-  const { addBoard, data, changeData } = props;
+  const { addBoard } = props;
+
+  const [data, setData] = useState({
+    no: '',
+    name: '',
+    title: '',
+    content: '',
+    regdate: '',
+  });
+  const changeData = useCallback((evt) => {
+    setData((data) => {
+      return produce(data, draft => {
+        draft[evt.target.name] = evt.target.value;
+      });
+    })
+  }, []);
+
+  const cnt = useRef(4);
 
   const sendData = useCallback((evt) => {
     evt.preventDefault();
-    const board = { name: data.name, title: data.title, content: data.content, regdate: data.regdate };
-    addBoard(board)
-  }, [addBoard, data]);
+
+    const check = data.name.trim().length !== 0 && data.title.trim().length !== 0 && data.content.trim().length !== 0;
+    if (check && !data.regdata) {
+      const board = {
+        no: cnt.current++,
+        name: data.name,
+        title: data.title,
+        content: data.content,
+        regdate: moment(new Date()).format('YYYY-MM-DD'),
+      };
+      addBoard(board);
+    } else {
+      const board = {
+        no: cnt.current++,
+        name: data.name,
+        title: data.title,
+        content: data.content,
+        regdate: data.regdate
+      };
+      addBoard(board)
+    }
+  }, [data, addBoard]);
 
   return (
     <form className="mb-3">
