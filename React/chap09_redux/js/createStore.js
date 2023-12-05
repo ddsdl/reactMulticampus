@@ -1,4 +1,3 @@
-
 const init = {
   count: 0,
   storeName: 'Count Store'

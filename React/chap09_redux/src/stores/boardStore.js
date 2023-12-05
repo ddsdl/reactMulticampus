@@ -1,10 +1,33 @@
+import moment from 'moment';
+
 // 상수 키 선언
 const BOARD_DELETE_BOARD = 'BOARD_DELETE_BOARD';
 const BOARD_FIND_BOARD = 'BOARD_FIND_BOARD';
+const BOARD_CHANGE_TEXT = 'BOARD_CHANGE_TEXT';
+const BOARD_ADD_BOARD = 'BOARD_ADD_BOARD';
+const BOARD_CLEAR_DATA = 'BOARD_CLEAR_DATA';
 
 // action
 export const deleteBoard = (no) => ({ type: BOARD_DELETE_BOARD, payload: no });
 export const findBoard = (no) => ({ type: BOARD_FIND_BOARD, payload: no });
+export const changeData = (evt) => ({ type: BOARD_CHANGE_TEXT, payload: evt.target });
+// data => { name: ?, title: ?, content: ?, regdate: ?}
+export const addBoard = (data) => {
+  const board = {
+    no: cnt++,
+    title: data.title,
+    content: data.content,
+    name: data.name,
+    regdate: data.regdate || moment(new Date()).format('YYYY-MM-DD'),
+  }
+  return { type: BOARD_ADD_BOARD, payload: board }
+}
+export const clearData = () => {
+  const newData = { no: '', name: '', title: '', content: '', regdate: '', };
+  return { type: BOARD_CLEAR_DATA, payload: newData }
+}
+
+let cnt = 4;
 
 const init = {
   boardList: [
@@ -24,7 +47,13 @@ const boardStore = (state = init, action) => {
       return { ...state, boardList: boards };
     case BOARD_FIND_BOARD:
       const findItem = state.boardList.find((item) => item.no === action.payload);
-      return { ...state, data: { ...findItem } }
+      return { ...state, data: { ...findItem } };
+    case BOARD_CHANGE_TEXT:
+      return { ...state, data: { ...state.data, [action.payload.name]: action.payload.value } };
+    case BOARD_ADD_BOARD:
+      return { ...state, boardList: state.boardList.concat(action.payload) };
+    case BOARD_CLEAR_DATA:
+      return { ...state, data: action.payload }
     default:
       return state;
   }
