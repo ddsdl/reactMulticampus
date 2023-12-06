@@ -6,6 +6,8 @@ function Header() {
     <nav>
       <Link to="/">INDEX | </Link>
       <Link to="/counter">COUNTER | </Link>
+      <Link to="/list">LIST | </Link>
+      <Link to="/insert">INSERT | </Link>
     </nav>
   )
 }

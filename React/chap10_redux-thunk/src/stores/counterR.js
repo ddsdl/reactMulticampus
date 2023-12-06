@@ -1,8 +1,14 @@
 const COUNTER_INCREASE = 'COUNTER_INCREASE';
 const COUNTER_DECREASE = 'COUNTER_DECREASE';
 
-export const increaseAction = (num) => {
-  return { type: COUNTER_INCREASE, payload: num };
+// redux-thunk, redux-saga, mobx, react-query, recoil
+// dispatch(increaseAction(2)) => counter(기존state, {type: XX, payload: XX})
+// dispatch(increaseAction(2)) => counter(기존state, undefined.payload) => error
+export const increaseAction = (num) => (dispatch) => {
+  setTimeout(() => {
+    dispatch({ type: COUNTER_INCREASE, payload: num });
+  }, 2000)
+  // return undefined;
 };
 export const decreaseAction = () => {
   return { type: COUNTER_DECREASE };
