@@ -13,8 +13,11 @@ const ADD_CONTACT_SUCCESS = 'CONTACT/ADD_CONTACT_SUCCESS';
 const ADD_CONTACT_FAILURE = 'CONTACT/ADD_CONTACT_FAILURE';
 
 const CHANGE_CONTACT = 'CONTACT/CHANGE_CONTACT';
+const CLEAR_CONTACT = 'CONTACT/CLEAR_CONTACT';
+
 const CHANGE_LOADING = 'CONTACT/CHANGE_LOADING';
 const CHANGE_ERROR = 'CONTACT/CHANGE_ERROR';
+
 
 const baseURL = process.env.REACT_APP_CONTACT_URL;
 const baseLONG = 'http://localhost:8000/contacts_long/' // process.env.REACT_APP_CONTACT_LONG_URL;
@@ -40,11 +43,14 @@ export const getContactAction = (no) => async (dispatch) => {
   }
 }
 
-
 // data 수정
 export const changeContact = (evt) => {
   return { type: CHANGE_CONTACT, payload: evt.target }
 }
+export const clearContact = () => {
+  return { type: CLEAR_CONTACT }
+}
+
 export const changeLoading = (check) => {
   return { type: CHANGE_LOADING, payload: check }
 }
@@ -130,6 +136,8 @@ const contactR = (state = init, action) => {
           [action.payload.name]: action.payload.value
         }
       }
+    case CLEAR_CONTACT:
+      return { ...state, contact: { no: '', name: '', address: '', tel: '', photo: '' } }
     case CHANGE_LOADING:
       return { ...state, loading: action.payload }
     case CHANGE_ERROR:

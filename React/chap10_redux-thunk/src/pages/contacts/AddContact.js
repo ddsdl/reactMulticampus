@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { changeContact, changeLoading, changeError } from '@stores/contactR';
+import { changeContact, changeLoading, changeError, clearContact } from '@stores/contactR';
 import axios from 'axios';
 
 function AddContact() {
@@ -21,8 +21,11 @@ function AddContact() {
       dispatch(changeLoading(false));
       dispatch(changeError(error))
     }
-
   }, [navigate, dispatch]);
+
+  useEffect(() => {
+    dispatch(clearContact())
+  }, [dispatch]);
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>Error: {error.message}</div>
