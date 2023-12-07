@@ -65,7 +65,8 @@ CREATE TABLE user(
   password    VARCHAR(50)     NOT NULL,
   createdAt   DATETIME                    DEFAULT NOW(),
   updatedAt   DATETIME                    DEFAULT NOW(),
-  CONSTRAINT user_id_pk PRIMARY KEY(id)
+  CONSTRAINT user_id_pk PRIMARY KEY(id),
+  CONSTRAINT user_email_uk UNIQUE(email)
 );
 
 DROP TABLE board;
@@ -94,6 +95,13 @@ UPDATE user SET name="향단", password='a123' WHERE id = 3;
 DELETE FROM user WHERE id = 3;
 
 SELECT * FROM user;
+
+-- id check
+SELECT * FROM user WHERE email = 'test@test.com';
+
+
+
+
 
 -- board table에 insert, update, delete, select
 -- board 목록에는 항상 입력한 사용자 이름이 출력되도록..
