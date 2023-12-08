@@ -62,7 +62,7 @@ CREATE TABLE user(
   id          INT             NOT NULL    AUTO_INCREMENT,
   name        VARCHAR(50)     NOT NULL,
   email       VARCHAR(50)     NOT NULL,
-  password    VARCHAR(50)     NOT NULL,
+  password    VARCHAR(200)    NOT NULL,
   createdAt   DATETIME                    DEFAULT NOW(),
   updatedAt   DATETIME                    DEFAULT NOW(),
   CONSTRAINT user_id_pk PRIMARY KEY(id),
@@ -78,12 +78,15 @@ CREATE TABLE board(
   cnt         INT                         DEFAULT 0,
   createdAt   DATETIME                    DEFAULT NOW(),
   updatedAt   DATETIME                    DEFAULT NOW(),
-  creatorAt   INT             NOT NULL,
+  creatorAt   INT,
   CONSTRAINT board_id_pk PRIMARY key(id),
   CONSTRAINT board_creatorAt_fk FOREIGN KEY(creatorAt) REFERENCES user(id)
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+    ON DELETE SET NULL
 );
+-- NO ACTION (에러 발생)
+-- CASCADE 같이 변경
+-- SET NULL Null로 변경
 
 -- user table에 insert, update, delete, select
 INSERT INTO user(name, email, password) VALUES('놀부', 'nolbu@company.com', 'abc123');
@@ -99,8 +102,23 @@ SELECT * FROM user;
 -- id check
 SELECT * FROM user WHERE email = 'test@test.com';
 
+-- updatePassword: '',
+UPDATE user SET updatedAt = NOW() WHERE email = 'nolbu@company.com'
+
+-- update: '',
+UPDATE user SET password = '123abc' WHERE email = 'nolbu@company.com'
+
+-- delete: '',
+DELETE FROM user WHERE email = 'test@test.com'
+  
+-- userList: ''
+
+SELECT * FROM user ORDER BY createdAt 
+DESC LIMIT 0, 10
 
 
+-- total
+SELECT COUNT(*) as cnt FROM user;
 
 
 -- board table에 insert, update, delete, select
@@ -118,6 +136,9 @@ DELETE FROM board WHERE id = 3;
 SELECT b.id, u.name, title, b.createdAt, cnt
 FROM user u INNER JOIN board b ON u.id = b.creatorAt;
 
+SELECT * FROM board
+
 -- 조회하면 카운트를 1개 증가
 UPDATE board SET cnt = cnt + 1 WHERE id = 3;
 
+SELECT * FROM user;
