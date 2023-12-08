@@ -1,25 +1,41 @@
 /* eslint-disable new-cap */
 const express = require('express');
 const router = express.Router();
+const boardDAO = require('./../models/boardDAO');
 
-router.get('/getBoardList', function (req, res, next) {
-  res.send('전체 게시물 조회');
+router.post('/insert', function (req, res, next) {
+  const body = req.body;
+  boardDAO.insert(body, (resp) => {
+    res.json(resp);
+  });
 });
 
-router.get('/getBoard', function (req, res, next) {
-  res.send('게시물 상세');
+router.put('/update', function (req, res, next) {
+  const body = req.body;
+  boardDAO.update(body, (resp) => {
+    res.json(resp);
+  })
 });
 
-router.get('/insertBoard', function (req, res, next) {
-  res.send('게시물 입력');
+router.delete('/delete/:id', function (req, res, next) {
+  const params = req.params;    // { no: 1 }
+  boardDAO.delete(params, (resp) => {
+    res.json(resp);
+  })
 });
 
-router.get('/updateBoard', function (req, res, next) {
-  res.send('게시물 수정');
+router.get('/boardList', function (req, res, next) {
+  const query = req.query;    // { no: 1, size: 10 }
+  boardDAO.boardList(query, (resp) => {
+    res.json(resp);
+  });
 });
 
-router.get('/deleteBoard', function (req, res, next) {
-  res.send('게시물 삭제');
+router.get('/board/:id', function (req, res, next) {
+  const params = req.params;    // { id: 5 }
+  boardDAO.board(params, (resp) => {
+    res.json(resp);
+  })
 });
 
 module.exports = router;

@@ -123,18 +123,28 @@ SELECT COUNT(*) as cnt FROM user;
 
 -- board table에 insert, update, delete, select
 -- board 목록에는 항상 입력한 사용자 이름이 출력되도록..
-INSERT INTO board(title, content, creatorAt) VALUES('첫번째 게시물', '첫번째 게시물 내용', 1);
-INSERT INTO board(title, content, creatorAt) VALUES('두번째 게시물', '두번째 게시물 내용', 1);
+INSERT INTO board(title, content, creatorAt) VALUES('첫번째 게시물', '첫번째 게시물 내용', 14);
+INSERT INTO board(title, content, creatorAt) VALUES('두번째 게시물', '두번째 게시물 내용', 14);
 INSERT INTO board(title, content, creatorAt) VALUES('세번째 게시물', '세번째 게시물 내용', 2);
 
-UPDATE board set title = '변경됨', content="변경됨" WHERE id = 3;
+UPDATE board set title = '변경됨', content="변경됨", updatedAt = NOW() WHERE id = 3;
 
 DELETE FROM board WHERE id = 3;
 
 
 -- 전체 조회
-SELECT b.id, u.name, title, b.createdAt, cnt
-FROM user u INNER JOIN board b ON u.id = b.creatorAt;
+SELECT b.id, u.name, title, DATE_FORMAT(b.createdAt, '%Y-%m-%d') as createdAt, cnt
+FROM user u INNER JOIN board b ON u.id = b.creatorAt
+ORDER BY b.id DESC
+LIMIT 0, 10;
+
+-- 1개 게시물 조회
+SELECT b.id, u.name, title, email, DATE_FORMAT(b.createdAt, '%Y-%m-%d') as createdAt, content, cnt
+FROM user u INNER JOIN board b ON u.id = b.creatorAt
+WHERE b.id = 5;
+
+-- 게시물 카운트 증가
+UPDATE board SET cnt = cnt + 1 WHERE id = 5;
 
 SELECT * FROM board
 
