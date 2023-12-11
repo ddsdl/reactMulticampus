@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
 function Header() {
   const location = useLocation();
   // console.log(location);
   const pathName = location.pathname.substring(1);
+
+  const openSearch = useCallback((evt) => {
+    evt.preventDefault();
+    const body = document.querySelector('body');
+    body.classList.add('box-collapse-open');
+    body.classList.remove('box-collapse-closed');
+  }, []);
+
+  const closeSearch = useCallback((evt) => {
+    evt.preventDefault();
+    const body = document.querySelector('body');
+    body.classList.remove('box-collapse-open');
+    body.classList.add('box-collapse-closed');
+  }, []);
 
   return (
     <>
@@ -13,7 +27,8 @@ function Header() {
         <div className="title-box-d">
           <h3 className="title-d">Search Property</h3>
         </div>
-        <span className="close-box-collapse right-boxed bi bi-x"></span>
+        <span className="close-box-collapse right-boxed bi bi-x"
+          onClick={closeSearch}></span>
         <div className="box-collapse-wrap form">
           <form className="form-a">
             <div className="row">
@@ -166,6 +181,7 @@ function Header() {
             className="btn btn-b-n navbar-toggle-box navbar-toggle-box-collapse"
             data-bs-toggle="collapse"
             data-bs-target="#navbarTogglerDemo01"
+            onClick={openSearch}
           >
             <i className="bi bi-search"></i>
           </button>
