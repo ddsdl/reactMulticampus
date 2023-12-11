@@ -7,9 +7,9 @@ function BoardUpdate() {
 
       {/* ======= Intro Single ======= */}
       <SubIntroSingle
-        title="Our Amazing Properties"
-        sub="Grid Properties"
-        pathName="board">
+        title="게시물 수정"
+        sub="Board Update"
+        pathName="board update">
       </SubIntroSingle>
 
       {/*  ======= Property Grid =======  */}
