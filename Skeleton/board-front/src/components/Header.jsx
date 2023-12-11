@@ -1,7 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 function Header() {
+  const location = useLocation();
+  // console.log(location);
+  const pathName = location.pathname.substring(1);
+
   return (
     <>
       <div className="click-closed"></div>
@@ -15,7 +19,7 @@ function Header() {
             <div className="row">
               <div className="col-md-12 mb-2">
                 <div className="form-group">
-                  <label className="pb-2" for="Type">Keyword</label>
+                  <label className="pb-2" htmlFor="Type">Keyword</label>
                   <input
                     type="text"
                     className="form-control form-control-lg form-control-a"
@@ -25,7 +29,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="Type">Type</label>
+                  <label className="pb-2" htmlFor="Type">Type</label>
                   <select className="form-control form-select form-control-a" id="Type">
                     <option>All Type</option>
                     <option>For Rent</option>
@@ -36,7 +40,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="city">City</label>
+                  <label className="pb-2" htmlFor="city">City</label>
                   <select className="form-control form-select form-control-a" id="city">
                     <option>All City</option>
                     <option>Alabama</option>
@@ -48,7 +52,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="bedrooms">Bedrooms</label>
+                  <label className="pb-2" htmlFor="bedrooms">Bedrooms</label>
                   <select className="form-control form-select form-control-a" id="bedrooms">
                     <option>Any</option>
                     <option>01</option>
@@ -59,7 +63,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="garages">Garages</label>
+                  <label className="pb-2" htmlFor="garages">Garages</label>
                   <select className="form-control form-select form-control-a" id="garages">
                     <option>Any</option>
                     <option>01</option>
@@ -71,7 +75,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="bathrooms">Bathrooms</label>
+                  <label className="pb-2" htmlFor="bathrooms">Bathrooms</label>
                   <select className="form-control form-select form-control-a" id="bathrooms">
                     <option>Any</option>
                     <option>01</option>
@@ -82,7 +86,7 @@ function Header() {
               </div>
               <div className="col-md-6 mb-2">
                 <div className="form-group mt-3">
-                  <label className="pb-2" for="price">Min Price</label>
+                  <label className="pb-2" htmlFor="price">Min Price</label>
                   <select className="form-control form-select form-control-a" id="price">
                     <option>Unlimite</option>
                     <option>$50,000</option>
@@ -114,26 +118,24 @@ function Header() {
             <span></span>
             <span></span>
           </button>
-          <a className="navbar-brand text-brand" href="index.html"
-          >Estate<span className="color-b">Agency</span></a
-          >
+          <a className="navbar-brand text-brand" href="index.html">Estate<span className="color-b">Agency</span></a>
 
           <div className="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" href="index.html">Home</a>
+                <Link className={pathName === '' ? "nav-link active" : "nav-link"} to="/">Home</Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="about.html">About</a>
+                <Link className={pathName === 'users' ? "nav-link active" : "nav-link"} to="/users">User</Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="property-grid.html">Property</a>
+                <Link className={pathName === 'boards' ? "nav-link active" : "nav-link"} to="/boards">Board</Link>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="blog-grid.html">Blog</a>
+                <Link className={pathName === 'signup' ? "nav-link active" : "nav-link"} to="/signup">Signup</Link>
               </li>
 
               <li className="nav-item dropdown">
