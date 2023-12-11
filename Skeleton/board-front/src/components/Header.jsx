@@ -133,7 +133,7 @@ function Header() {
             <span></span>
             <span></span>
           </button>
-          <a className="navbar-brand text-brand" href="index.html">Estate<span className="color-b">Agency</span></a>
+          <a className="navbar-brand text-brand" href="index.html">Skeleton<span className="color-b">Project</span></a>
 
           <div className="navbar-collapse collapse justify-content-center" id="navbarDefault">
             <ul className="navbar-nav">
