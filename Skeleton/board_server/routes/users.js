@@ -46,7 +46,7 @@ router.post('/signup', async (req, res, next) => {
   const data = req.body;
 
   userDAO.signup(data, (resp) => {
-    res.json(resp)
+    res.json(resp);
   });
 
 });

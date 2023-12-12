@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 import SubIntroSingle from '@components/SubIntroSingle';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function BoardList() {
   const navigate = useNavigate();
+
+  const [boardList, setBoardList] = useState({
+    statis: '', message: '', pageno: 1, pagesize: 10, total: 0, totalPage: 1, data: []
+  });
+  const getBoardList = useCallback(async (no = 1, size = 10) => {
+    const resp = await axios.get('http://localhost:8000/boards/boardList', { params: { no, size } });
+    // console.log(resp.data);
+    setBoardList(resp.data);
+  }, []);
+
+  useEffect(() => {
+    getBoardList();
+  }, [getBoardList]);
+
+  const { name, email } = useSelector(state => state.userStore);
+  useEffect(() => {
+    if (!name) navigate('/users');
+  }, [name, email, navigate]);
 
   return (
     <main id="main">
@@ -32,13 +52,15 @@ function BoardList() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td><Link to="/detail">타이틀</Link></td>
-                    <td>홍길동</td>
-                    <td>2023-12-25</td>
-                    <td>1</td>
-                  </tr>
+                  {boardList.data.map((board) => (
+                    <tr key={board.id}>
+                      <td>{board.id}</td>
+                      <td><Link to={"/detail/" + board.id}>{board.title}</Link></td>
+                      <td>{board.name}</td>
+                      <td>{board.createdAt}</td>
+                      <td>{board.cnt}</td>
+                    </tr>
+                  ))}
                 </tbody>
                 <tfoot>
                   <tr>

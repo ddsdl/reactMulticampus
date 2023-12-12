@@ -1,22 +1,49 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 
 import SubIntroSingle from '@components/SubIntroSingle';
+import { getBoardAction } from './../stores/boardStore'
 
-function BoardDetail() {
+function BoardsDetail() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
+  const [board, setBoard] = useState({
+    id: '',
+    name: '',
+    email: '',
+    title: '',
+    contents: '',
+    viewCnt: '',
+    createdAt: '',
+  });
+
+  const getBoardDetail = useCallback(async () => {
+    const resp = await axios.get('http://localhost:8000/boards/board/' + id);
+    // console.log(resp.data);
+    setBoard(resp.data.data);
+    dispatch(getBoardAction(resp.data.data));
+  }, [dispatch, setBoard, id]);
+
+  const deleteBoard = useCallback(async (id) => {
+    const resp = await axios.delete('http://localhost:8000/boards/delete/' + id);
+    console.log(resp.data);
+    navigate('/boards');
+  }, [navigate]);
+
+  useEffect(() => {
+    getBoardDetail();
+  }, [getBoardDetail]);
 
   return (
-    <main id="main">
-
-      {/* ======= Intro Single ======= */}
-      <SubIntroSingle
-        title="게시물 상세"
-        sub="board detail"
-        pathName="board detail">
-      </SubIntroSingle>
-
-      {/*  ======= Property Grid =======  */}
+    <>
+      {/* <!-- ======= Intro Single ======= --> */}
+      <SubIntroSingle title="게시물 상세 페이지" sub="Board Detail" pathName="boards" />
+      {/* <!-- End Intro Single--> */}
+      {/* <!-- ======= Property Grid ======= */}
       <section className="property-grid grid">
         <div className="container">
           <div className="row">
@@ -25,41 +52,40 @@ function BoardDetail() {
                 <tbody>
                   <tr>
                     <td>타이틀</td>
-                    <td>첫번째 게시물</td>
+                    <td>{board.title}</td>
                   </tr>
                   <tr>
                     <td>내용</td>
-                    <td>첫번째 게시물 내용</td>
+                    <td>{board.content}</td>
                   </tr>
                   <tr>
                     <td>작성일</td>
-                    <td>2023-12-25</td>
+                    <td>{board.createdAt}</td>
                   </tr>
                   <tr>
                     <td>조회수</td>
-                    <td>1</td>
+                    <td>{board.cnt}</td>
                   </tr>
                   <tr>
                     <td colSpan="2" className="text-end">
                       <button className="btn btn-primary btn-sm" onClick={() => navigate('/boards')}>리스트</button>{' '}
                       <button className="btn btn-warning btn-sm" onClick={() => navigate('/update')}>수정</button>{' '}
-                      <button className="btn btn-danger btn-sm">삭제</button>
+                      <button className="btn btn-danger btn-sm" onClick={() => deleteBoard(board.id)}>삭제</button>
                     </td>
                   </tr>
                 </tbody>
               </table>
             </div>
-
           </div>
-
         </div>
       </section>
-    </main>
-  )
+      {/* <!-- End Property Grid Single--> */}
+    </>
+  );
 }
 
-export default BoardDetail;
+export default BoardsDetail;
 
-BoardDetail.defaultProps = {
-  sub: ''
+BoardsDetail.defaultProps = {
+  sub: '',
 };

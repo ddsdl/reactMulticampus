@@ -85,7 +85,7 @@ const userDAO = {
         bcrypt.compare(password, user[0].password, async (error, result) => {
           if (error) callback({ status: 500, message: '아이디, 패스워드를 확인해주세요', error });
           else if (result) {
-            callback({ status: 200, message: 'OK', data: { name: user[0].name, email: user[0].email } });
+            callback({ status: 200, message: 'OK', data: { name: user[0].name, email: user[0].email, id: user[0].id } });
           } else {
             callback({ status: 500, message: '아이디, 패스워드를 확인해주세요' });
           }

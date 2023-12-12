@@ -1,9 +1,24 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useCallback, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 import SubIntroSingle from '@components/SubIntroSingle';
+import axios from 'axios';
 
 function Signup() {
+  const navigate = useNavigate();
+
+  const [data, setData] = useState({ name: '', email: '', password: '' });
+  const changeData = useCallback((evt) => {
+    setData((data) => ({ ...data, [evt.target.name]: evt.target.value }));
+  }, []);
+  const signup = useCallback(async (evt) => {
+    evt.preventDefault();
+    const resp = await axios.post('http://localhost:8000/users/signup', data);
+    console.log(resp.data);
+    if (resp.data.status === 500) window.alert('사용자가 존재합니다');
+    else navigate('/users')
+  }, [data, navigate]);
+
   return (
     <main id="main">
       {/* ======= Intro Single ======= */}
@@ -18,18 +33,21 @@ function Signup() {
           <form className="row">
             <div className="col-sm-12 position-relative form-group mb-3">
               <label htmlFor="email" className="form-label">E-Mail</label>
-              <input type="text" className="form-control" id="email" name="email" />
+              <input type="text" className="form-control" id="email" name="email"
+                value={data.email} onChange={changeData} />
             </div>
             <div className="col-sm-12 position-relative form-group mb-3">
               <label htmlFor="password" className="form-label">Password</label>
-              <input type="password" className="form-control" id="password" name="password" />
+              <input type="password" className="form-control" id="password" name="password"
+                value={data.password} onChange={changeData} />
             </div>
             <div className="col-sm-12 position-relative form-group mb-3">
               <label htmlFor="name" className="form-label">Name</label>
-              <input type="text" className="form-control" id="name" name="name" />
+              <input type="text" className="form-control" id="name" name="name"
+                value={data.name} onChange={changeData} />
             </div>
             <div className="col-sm-12 position-relative form-group">
-              <button type="submit" className="btn btn-danger btn-sm">SEND</button>{' '}
+              <button type="submit" className="btn btn-danger btn-sm" onClick={signup}>SEND</button>{' '}
               <button type="reset" className="btn btn-primary btn-sm">RESET</button>
             </div>
           </form>
