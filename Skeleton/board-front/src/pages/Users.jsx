@@ -22,6 +22,10 @@ function Users() {
     console.log(resp.data);
     if (resp.data.status === 500) window.alert(resp.data.message);
     else {
+      const storage = window.sessionStorage;
+      storage.setItem('name', resp.data.data.name);
+      storage.setItem('email', resp.data.data.email);
+      storage.setItem('id', resp.data.data.id);
       dispatch(loginAction(resp.data.data));
       navigate('/boards');
     }

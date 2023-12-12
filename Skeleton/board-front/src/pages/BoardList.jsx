@@ -22,9 +22,17 @@ function BoardList() {
   }, [getBoardList]);
 
   const { name, email } = useSelector(state => state.userStore);
+  const storage = window.sessionStorage;
+  const storageName = storage.getItem('name');
+  // console.log(storageName);
+
+  // logout은 userStore의 name 값을 '' 로 대입
+  // storage.removeItem('name'); 형태로 storage 삭제도 해야 함
+  storage.removeItem('email');
+
   useEffect(() => {
-    if (!name) navigate('/users');
-  }, [name, email, navigate]);
+    if (!name && !storageName) navigate('/users');
+  }, [name, email, storageName, navigate]);
 
   return (
     <main id="main">
