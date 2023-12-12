@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const boardDAO = require('./../models/boardDAO');
 
+// router.post('/board', function (req, res, next) {
 router.post('/insert', function (req, res, next) {
   const body = req.body;
   boardDAO.insert(body, (resp) => {
@@ -10,6 +11,7 @@ router.post('/insert', function (req, res, next) {
   });
 });
 
+// router.put('/board', function (req, res, next) {
 router.put('/update', function (req, res, next) {
   const body = req.body;
   boardDAO.update(body, (resp) => {
@@ -17,6 +19,7 @@ router.put('/update', function (req, res, next) {
   })
 });
 
+// router.delete('/board/:id', function (req, res, next) {
 router.delete('/delete/:id', function (req, res, next) {
   const params = req.params;    // { no: 1 }
   boardDAO.delete(params, (resp) => {
@@ -24,6 +27,7 @@ router.delete('/delete/:id', function (req, res, next) {
   })
 });
 
+// router.get('/board', function (req, res, next) {
 router.get('/boardList', function (req, res, next) {
   const query = req.query;    // { no: 1, size: 10 }
   boardDAO.boardList(query, (resp) => {
@@ -31,6 +35,7 @@ router.get('/boardList', function (req, res, next) {
   });
 });
 
+// router.get('/board/:id', function (req, res, next) {
 router.get('/board/:id', function (req, res, next) {
   const params = req.params;    // { id: 5 }
   boardDAO.board(params, (resp) => {
